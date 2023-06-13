@@ -1,46 +1,15 @@
 ---
 ---
 
-<!-- Show this on mobile -->
+<!-- Show this on all screens  -->
 <button
-   class="p-0 w-12 h-12 bg-red-600 rounded-full hover:bg-red-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none md:invisible"
-   onclick="location.href='mailto:junaid.h.gazi@gmail.com';"
+   class="fixed bottom-4 right-4 text-xs text-white mt-8 px-4 h-10 bg-red-600 rounded-full hover:bg-red-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none visible"
+   onclick="window.location.href='mailto:junaid.h.gazi@gmail.com'"
 >
-   <svg
-      viewBox="0 0 20 20"
-      enable-background="new 0 0 20 20"
-      class="w-6 h-6 inline-block"
-   >
-      <path
-         fill="#FFFFFF"
-         d="M16,10c0,0.553-0.048,1-0.601,1H11v4.399C11,15.951,10.553,16,10,16c-0.553,0-1-0.049-1-0.601V11H4.601
-                    C4.049,11,4,10.553,4,10c0-0.553,0.049-1,0.601-1H9V4.601C9,4.048,9.447,4,10,4c0.553,0,1,0.048,1,0.601V9h4.399
-                    C15.952,9,16,9.447,16,10z"
-      ></path>
-   </svg>
-</button>
 
-<!-- Show this on desktop -->
-<button
-   class="text-white px-4 w-60 h-10 bg-red-600 rounded-full hover:bg-red-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none invisible md:visible">
-   <svg
-      viewBox="0 0 20 20"
-      enable-background="new 0 0 20 20"
-      class="w-6 h-6 inline-block mr-1"
-   >
-      <path
-         fill="#FFFFFF"
-         d="M17.19,4.155c-1.672-1.534-4.383-1.534-6.055,0L10,5.197L8.864,4.155c-1.672-1.534-4.382-1.534-6.054,0
-                                    c-1.881,1.727-1.881,4.52,0,6.246L10,17l7.19-6.599C19.07,8.675,19.07,5.881,17.19,4.155z"
-      ></path>
-   </svg>
-   <span>Extended</span>
+   <i
+      class="fa fa-heart"
+      aria-hidden="true"
+      title="heart icon"></i>
+<span class="pl-1">Contact Me</span>
 </button>
-
-<style>
-   button {
-      position: sticky;
-      float: right;
-      bottom: 20px;
-   }
-</style>

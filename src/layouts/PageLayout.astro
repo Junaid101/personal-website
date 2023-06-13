@@ -33,14 +33,14 @@ import FloatingActionButton from "src/components/FloatingActionButton.astro";
   </head>
 
   <body
-    class="min-h-screen max-w-3xl mx-auto px-6 sm:px-8">
+    class="static min-h-screen max-w-3xl mx-auto px-6 sm:px-8">
     <Header />
     
     <main id="main">
       <slot name="main" />
     </main>
-    <FloatingActionButton />
     <Footer />
+    <FloatingActionButton />
     <style>
       body {
         display: grid;
