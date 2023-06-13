@@ -15,6 +15,7 @@ import ThemeScript from "./ThemeScript.astro";
 import Favicon from "./Favicon.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import FloatingActionButton from "src/components/FloatingActionButton.astro";
 ---
 
 <!DOCTYPE html>
@@ -32,12 +33,13 @@ import Footer from "../components/Footer.astro";
   </head>
 
   <body
-    class="min-h-screen max-w-3xl mx-auto px-6 sm:px-8"
-  >
+    class="min-h-screen max-w-3xl mx-auto px-6 sm:px-8">
     <Header />
+    
     <main id="main">
       <slot name="main" />
     </main>
+    <FloatingActionButton />
     <Footer />
     <style>
       body {
