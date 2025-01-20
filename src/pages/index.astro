@@ -1,0 +1,187 @@
+---
+import {
+  Menu,
+  X,
+  Link,
+  MessageCircle,
+  Mail,
+  Linkedin,
+  Github,
+  ArrowRight,
+  User,
+  Instagram,
+} from "lucide-react";
+import React, { useState } from "react";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <div class="min-h-screen bg-gray-50 font-mono">
+    <div class="max-w-3xl mx-auto px-4 py-8">
+      {/* Avatar Section */}
+      <div class="flex justify-center mb-8">
+        <div class="w-32 h-32 rounded-full bg-gray-200 flex items-center justify-center">
+          <User size={48} color={"black"} />
+        </div>
+      </div>
+
+      {/* Navigation */}
+      <nav class="mb-16">
+        <div class="flex justify-center space-x-8 text-sm">
+          <a href="#about" class="text-gray-600 hover:text-black">/about</a>
+          <a href="#experience" class="text-gray-600 hover:text-black">/experience</a>
+          <a href="#projects" class="text-gray-600 hover:text-black">/projects</a>
+          <a href="#skills" class="text-gray-600 hover:text-black">/skills</a>
+        </div>
+      </nav>
+
+      {/* Header Section */}
+      <header class="mb-16 text-center">
+        <h1 class="text-2xl font-bold mb-4">Junaid Hossein</h1>
+        <div class="text-sm text-gray-600 space-y-2">
+          <p>technical_product_manager.exe</p>
+          <p>Düsseldorf, Germany</p>
+        </div>
+      </header>
+
+      {/* About Section */}
+      <section id="about" class="mb-16">
+        <h2 class="text-lg font-bold mb-4">$ cat about.txt</h2>
+        <div class="bg-white p-6 border border-gray-200">
+          <p class="text-sm leading-relaxed">
+            Technical PM with strong system design experience in both enterprise and startup
+            domains. I design applications to be Reliable, Scalable, and Maintainable. Experienced
+            in refining product requirements and communicating them through database modelling, API
+            Specifications, C4 diagrams, and other system architecture specifications.
+          </p>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section id="experience" class="mb-16">
+        <h2 class="text-lg font-bold mb-4">$ ls -l /experience</h2>
+        <div class="space-y-4">
+          <div class="bg-white p-6 border border-gray-200">
+            <h3 class="font-bold mb-2">Sr. Technical Product Manager @ Movido Media</h3>
+            <p class="text-xs text-gray-500 mb-2">June 2021 - Present</p>
+            <p class="text-sm text-gray-600 mb-2">
+              Led development of SaaS CRM product with subscription management, invoicing, and
+              analytics.
+            </p>
+            <div class="text-xs text-gray-500">
+              tech_stack: [Golang, Angular, React, MySQL, Redis]
+            </div>
+          </div>
+
+          <div class="bg-white p-6 border border-gray-200">
+            <h3 class="font-bold mb-2">Product Manager @ Shohoz.com</h3>
+            <p class="text-xs text-gray-500 mb-2">Feb 2020 - May 2021</p>
+            <p class="text-sm text-gray-600 mb-2">
+              Built IAM and real-time notification services for 2M+ users. Led COVID-19
+              contact-tracing app development.
+            </p>
+            <div class="text-xs text-gray-500">tech_stack: [C#.NET, MongoDB, AMQP, MQTT]</div>
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" class="mb-16">
+        <h2 class="text-lg font-bold mb-4">$ ls -l /projects</h2>
+        <div class="space-y-4">
+          <div class="bg-white p-6 border border-gray-200">
+            <h3 class="font-bold mb-2">NFT Staking App @ Pixelmon</h3>
+            <p class="text-sm text-gray-600 mb-2">
+              PM for #1 traded NFT on OpenSea. Worked with blockchain developers and game designers.
+            </p>
+            <div class="text-xs text-gray-500">tech_stack: [Ethereum, Smart Contracts]</div>
+          </div>
+
+          <div class="bg-white p-6 border border-gray-200">
+            <h3 class="font-bold mb-2">FinTech Advisory @ SwissLife Select</h3>
+            <p class="text-sm text-gray-600 mb-2">
+              Led implementation of eIDAS-compliant eSignature for 2,000 IFAs.
+            </p>
+            <div class="text-xs text-gray-500">tech_stack: [C#.NET, AWS, Microservices]</div>
+          </div>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section id="skills" class="mb-16">
+        <h2 class="text-lg font-bold mb-4">$ cat skills.json</h2>
+        <div class="bg-white p-6 border border-gray-200">
+          <div class="space-y-4">
+            <div>
+              <h3 class="font-bold mb-2">Technology</h3>
+              <p class="text-sm">
+                System Design, Backend Architecture, Microservices, Python, C#.NET, Angular, React,
+                RabbitMQ, MongoDB
+              </p>
+            </div>
+            <div>
+              <h3 class="font-bold mb-2">Tools</h3>
+              <p class="text-sm">
+                Figma, Sketch, JIRA, GitHub, LucidChart, C4 Diagramming, PowerBI
+              </p>
+            </div>
+            <div>
+              <h3 class="font-bold mb-2">Product Management</h3>
+              <p class="text-sm">
+                Backlog Management, User Journey Mapping, Story Writing, Business Modelling,
+                Agile/Scrum
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" class="mb-16">
+        <h2 class="text-lg font-bold mb-4">$ contact --help</h2>
+        <div class="bg-white p-6 border border-gray-200">
+          <div class="flex flex-col items-center space-y-4">
+            <div class="flex justify-center space-x-6">
+              <a
+                href="https://github.com/junaidhgazi"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-600 hover:text-black flex items-center space-x-2">
+                <Github size={20} />
+                <span class="text-sm">/github</span>
+              </a>
+              <a
+                href="https://linkedin.com/in/junaidhgazi"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-600 hover:text-black flex items-center space-x-2">
+                <Linkedin size={20} />
+                <span class="text-sm">/linkedin</span>
+              </a>
+              <a
+                href="mailto:junaid.h.gazi@gmail.com"
+                class="text-gray-600 hover:text-black flex items-center space-x-2">
+                <Mail size={20} />
+                <span class="text-sm">/email</span>
+              </a>
+              <a
+                href="https://instagram.com/junaidhgazi"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-600 hover:text-black flex items-center space-x-2">
+                <Instagram size={20} />
+                <span class="text-sm">/instagram</span>
+              </a>
+            </div>
+            <div class="text-xs text-gray-500 mt-4">echo "Let's connect and collaborate!"</div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer class="text-center text-sm text-gray-500">
+        <p>© {new Date().getFullYear()} // all rights reserved</p>
+      </footer>
+    </div>
+  </div>
+</Layout>

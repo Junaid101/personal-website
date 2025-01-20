@@ -1,108 +1,24 @@
-# Dependencies
-node_modules/
-vendor/
-.pnp/
-.pnp.js
-
-# Build outputs
-build/
+# build output
 dist/
-out/
-*.pyc
-__pycache__/
 
-# Environment files
-.env
-.env.local
-.env.*.local
-.env.development
-.env.test
-.env.production
+# generated types
+.astro/
 
-# IDE - VSCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-*.code-workspace
+# dependencies
+node_modules/
 
-# IDE - JetBrains (IntelliJ, PyCharm, etc)
-.idea/
-*.iml
-*.iws
-.idea_modules/
-
-# IDE - Eclipse
-.project
-.classpath
-.settings/
-
-# Logs
-logs
-*.log
+# logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
 
-# Operating System
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
 
-# Testing
-coverage/
-.coverage
-.nyc_output
-junit.xml
-
-# Temporary files
-*.swp
-*.swo
-*.tmp
-*.temp
-*~
-
-# Compiled files
-*.com
-*.class
-*.dll
-*.exe
-*.o
-*.so
-
-# Package files
-*.7z
-*.dmg
-*.gz
-*.iso
-*.jar
-*.rar
-*.tar
-*.zip
-
-# Database
-*.sqlite
-*.sqlite3
-*.db
-
-# Next.js
-.next/
-out/
-
-# React Native
-.expo/
-*.jks
-*.p8
-*.p12
-*.key
-*.mobileprovision
-*.orig.*
-
-# Others
-.cache/
-.history/ 
+# jetbrains setting folder
+.idea/
