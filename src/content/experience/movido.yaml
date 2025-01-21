@@ -1,0 +1,18 @@
+# src/content/experience/movido.yaml
+title: "Sr. Technical Product Manager, Core Team"
+company: "Movido Media Verlag GmbH"
+startDate: "2021-06-01"
+endDate: "present"
+description: "Acted as a PM for a SaaS CRM product – a subscription management system with invoicing, third-party API integration, support ticketing, audit logs, analytics, and income forecasting."
+responsibilities:
+  - "Performed requirement collection, prioritisation and building a product roadmap with stakeholders."
+  - "Defined APIs, system components and data structures for development."
+  - "Rolled out a data migration of 70,000 customers with associated documents, support tickets, and other database entities."
+  - "Led a team in extending an open-source ticketing solution, achieving 25% improvement in turnaround time."
+  - "Performed technical gap analysis for integration with a new Customer App."
+techStack:
+  - "Golang"
+  - "Angular"
+  - "React"
+  - "MySQL"
+  - "Redis"

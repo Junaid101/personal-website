@@ -1,0 +1,16 @@
+title: "Business Analyst (Technology)"
+company: "SELISE Digital Platforms AG"
+startDate: "2017-12-01"
+endDate: "2020-01-01"
+description: "Worked on an aPaaS platform built on queue-backed multi-tenant microservices deployed on AWS Cloud."
+responsibilities:
+  - "Led 15-member team for Fintech product development for SwissLife AG."
+  - "Implemented eIDAS-compliant eSignature for 2,000 IFAs across three territories."
+  - "Integrated finAPI and transactions categorisation service under EU PSD2 Guideline."
+  - "Worked on IOT Project for Grand Basel using Bluetooth Low Energy Beacons."
+  - "Designed signal-smoothing algorithm for bluetooth signal processing."
+techStack:
+  - "C#.NET"
+  - "AWS"
+  - "BLE"
+  - "Microservices"

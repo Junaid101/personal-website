@@ -1,0 +1,238 @@
+---
+import { useState, useEffect } from 'react';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout> 
+    const TerminalCommands = () => {
+        const [commandHistory, setCommandHistory] = useState([]);
+        const [currentCommand, setCurrentCommand] = useState('');
+        const [directoryPath, setDirectoryPath] = useState('~/portfolio');
+        const [systemStatus, setSystemStatus] = useState('initializing');
+      
+        const asciiArt = `
+      ╔═══════════════════════════════════════════╗
+      ║      ╦╦ ╦╔╗╔╔═╗╦╔╦╗  ╔═╗╔═╗╔═╗            ║
+      ║      ║║ ║║║║╠═╣║ ║║  ╠═╝╠═╣║ ╦            ║
+      ║     ╚╝╚═╝╝╚╝╩ ╩╩═╩╝  ╩  ╩ ╩╚═╝            ║
+      ║     Technical Product Manager v2.0        ║
+      ╚═══════════════════════════════════════════╝`;
+      
+        const projects = {
+          'nft-staking': {
+            name: 'NFT Staking App',
+            status: 'deployed',
+            tech: ['Ethereum', 'Solidity', 'React'],
+            description: 'PM for #1 traded NFT on OpenSea'
+          },
+          'fintech-advisory': {
+            name: 'FinTech Advisory',
+            status: 'completed',
+            tech: ['C#.NET', 'AWS', 'Microservices'],
+            description: 'eIDAS-compliant eSignature implementation'
+          }
+        };
+      
+        const techStack = {
+          backend: ['Golang', 'C#.NET', 'Python', 'Node.js'],
+          frontend: ['React', 'Angular', 'TypeScript'],
+          database: ['MongoDB', 'MySQL', 'Redis'],
+          cloud: ['AWS', 'Azure', 'Docker', 'Kubernetes'],
+          tools: ['JIRA', 'Git', 'Jenkins', 'Terraform']
+        };
+      
+        useEffect(() => {
+          const bootSequence = async () => {
+            const steps = [
+              { status: 'Initializing system...', delay: 500 },
+              { status: 'Loading kernel modules...', delay: 300 },
+              { status: 'Mounting filesystems...', delay: 400 },
+              { status: 'Starting network services...', delay: 300 },
+              { status: 'System ready', delay: 200 }
+            ];
+      
+            for (const step of steps) {
+              setSystemStatus(step.status);
+              await new Promise(resolve => setTimeout(resolve, step.delay));
+            }
+          };
+      
+          bootSequence();
+        }, []);
+      
+        const commands = {
+          help: () => ({
+            output: 'Available commands:\n' +
+              '==================\n' +
+              'system\n' +
+              '  status    - display system status\n' +
+              '  specs     - show system specifications\n' +
+              '  uptime    - show system uptime\n\n' +
+              'portfolio\n' +
+              '  projects  - list all projects\n' +
+              '  project <name> - show project details\n' +
+              '  stack     - display tech stack\n' +
+              '  skills    - show skill ratings\n\n' +
+              'navigation\n' +
+              '  pwd      - print working directory\n' +
+              '  ls [-l]  - list contents\n' +
+              '  cd       - change directory\n\n' +
+              'utilities\n' +
+              '  clear    - clear terminal\n' +
+              '  whoami   - display user info\n' +
+              '  date     - show current date\n' +
+              '  banner   - display ASCII banner\n' +
+              '  contact  - show contact info'
+          }),
+          
+          banner: () => ({
+            output: asciiArt
+          }),
+      
+          status: () => ({
+            output: `System Status: ${systemStatus}\n` +
+              'Memory Usage: 42%\n' +
+              'CPU Load: 15%\n' +
+              'Active Sessions: 1\n' +
+              `Last Backup: ${new Date().toLocaleDateString()}\n` +
+              'Security Level: HIGH\n' +
+              '====================================='
+          }),
+      
+          stack: () => ({
+            output: Object.entries(techStack)
+              .map(([category, tools]) => 
+                `${category.toUpperCase()}:\n${tools.map(tool => `  ▪ ${tool}`).join('\n')}`)
+              .join('\n\n')
+          }),
+      
+          project: (name) => {
+            const project = projects[name];
+            if (!project) return { 
+              output: `Project '${name}' not found. Use 'projects' to list available projects.` 
+            };
+            return {
+              output: `PROJECT: ${project.name}\n` +
+                `STATUS: ${project.status}\n` +
+                `TECH STACK: ${project.tech.join(', ')}\n` +
+                `DESCRIPTION: ${project.description}\n` +
+                '==============================='
+            };
+          }),
+      
+          projects: () => ({
+            output: Object.entries(projects)
+              .map(([key, project]) => 
+                `[${project.status.toUpperCase()}] ${project.name}\n` +
+                `  Key: ${key}\n` +
+                `  Stack: ${project.tech.join(', ')}`)
+              .join('\n\n')
+          }),
+      
+          skills: () => ({
+            output: 'SKILL PROFICIENCY LEVELS:\n' +
+              '========================\n' +
+              'System Design    [##########] 100%\n' +
+              'Architecture     [########--] 80%\n' +
+              'Backend Dev     [#########-] 90%\n' +
+              'Frontend Dev    [#######---] 70%\n' +
+              'DevOps          [########--] 80%\n' +
+              'Product Management [##########] 100%\n' +
+              '------------------------'
+          }),
+      
+          contact: () => ({
+            output: 'SECURE COMMUNICATION CHANNELS:\n' +
+              '============================\n' +
+              'PGP: 0xAB54321F\n' +
+              'Matrix: @junaid:matrix.org\n' +
+              'Signal: +49 XXX XXX XXX\n' +
+              'IRC: junaid101\n' +
+              '============================\n' +
+              'Status: Available for collaboration\n' +
+              'GPG Fingerprint: 5E3A 8E1B 66B1 74C9\n' +
+              '============================'
+          }),
+      
+          whoami: () => ({
+            output: `junaid:x:1000:1000:Junaid Hossein,,,:/home/junaid:/bin/bash\n` +
+              'Groups: developers, product-managers, tech-leads\n' +
+              'Security Clearance: Level 3\n' +
+              `Last Login: ${new Date().toLocaleString()}\n` +
+              'Sessions: tmux(1), ssh(2)'
+          })
+        };
+      
+        const handleCommand = (cmd) => {
+          const trimmedCmd = cmd.trim().toLowerCase();
+          const cmdParts = trimmedCmd.split(' ');
+          const mainCommand = cmdParts[0];
+          const args = cmdParts.slice(1);
+      
+          let output = '';
+          if (mainCommand === 'project' && args.length > 0) {
+            output = commands.project(args[0]).output;
+          } else if (commands[mainCommand]) {
+            output = commands[mainCommand]().output;
+          } else if (trimmedCmd === 'clear') {
+            setCommandHistory([]);
+            return;
+          } else if (trimmedCmd === '') {
+            return;
+          } else {
+            output = `Command not found: ${trimmedCmd}. Type 'help' for available commands.`;
+          }
+      
+          setCommandHistory(prev => [...prev, { 
+            command: cmd, 
+            output,
+            timestamp: new Date().toLocaleTimeString()
+          }]);
+        };
+      
+        return (
+          <div className="bg-black text-green-500 p-4 font-mono rounded-lg mb-8 border border-green-500">
+            <div className="mb-4 opacity-80">
+              {asciiArt.split('\n').map((line, i) => (
+                <div key={i} className="text-center">{line}</div>
+              ))}
+            </div>
+            
+            <div className="mb-4">
+              <div className="text-blue-400">JunaidOS v2.0.1 LTS</div>
+              <div className="text-gray-500">System Status: {systemStatus}</div>
+              <div className="text-gray-500">Type 'help' for available commands</div>
+            </div>
+            
+            {commandHistory.map((entry, i) => (
+              <div key={i} className="mb-2 border-b border-gray-800 pb-2">
+                <div className="flex items-center">
+                  <span className="text-purple-400">[{entry.timestamp}] junaid@portfolio:~$</span>
+                  <span className="ml-2">{entry.command}</span>
+                </div>
+                <pre className="whitespace-pre-wrap text-sm mt-1 pl-4">{entry.output}</pre>
+              </div>
+            ))}
+            
+            <div className="flex items-center mt-2">
+              <span className="text-purple-400">junaid@portfolio:~$</span>
+              <input
+                type="text"
+                value={currentCommand}
+                onChange={(e) => setCurrentCommand(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    handleCommand(currentCommand);
+                    setCurrentCommand('');
+                  }
+                }}
+                className="ml-2 bg-transparent focus:outline-none flex-1 text-green-500"
+                autoFocus
+              />
+            </div>
+          </div>
+        );
+      };
+      
+      export default TerminalCommands;
+</Layout client:load>

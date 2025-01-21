@@ -1,0 +1,15 @@
+title: "Product Manager, Platform Team"
+company: "Shohoz.com"
+startDate: "2020-02"
+endDate: "2021-05"
+description: "Conducted requirement engineering, API design and development management for highly-available, multi-tenant Identity and Access Management Service, GeoLocation Storage Service, and User Notification service."
+responsibilities:
+  - "Built real-time notification service for 20,000 riders and 2 million users over AMQP and MQTT."
+  - "Achieved 200% increase in service uptime and USD 24,000 savings in infrastructure costs."
+  - "Designed migration strategy of 2 million users for multi-vertical SSO mechanism."
+  - "Led 25-member team for COVID-19 contact-tracing application development."
+techStack:
+  - "C#.NET"
+  - "MongoDB"
+  - "AMQP"
+  - "MQTT"

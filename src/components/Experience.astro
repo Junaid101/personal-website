@@ -1,0 +1,44 @@
+---
+// src/components/Experience.astro
+import { getCollection } from 'astro:content';
+
+const experiences = await getCollection('experience');
+const sortedExperiences = experiences.sort((a, b) => {
+  return new Date(b.data.startDate) - new Date(a.data.startDate);
+});
+---
+
+<section id="experience" class="mb-16">
+  <h2 class="text-lg font-bold mb-4">$ ls -l /experience</h2>
+  <div class="space-y-4">
+    {sortedExperiences.map((experience) => (
+      <div class="bg-white p-6 border border-gray-200">
+        <h3 class="font-bold mb-2">{experience.data.title} @ {experience.data.company}</h3>
+        <p class="text-xs text-gray-500 mb-2">
+          {new Date(experience.data.startDate).toLocaleDateString('en-US', { 
+            month: 'short', 
+            year: 'numeric' 
+          })} - {
+            experience.data.endDate === 'present' 
+              ? 'Present'
+              : new Date(experience.data.endDate).toLocaleDateString('en-US', { 
+                  month: 'short', 
+                  year: 'numeric' 
+                })
+          }
+        </p>
+        <p class="text-sm text-gray-600 mb-4">
+          {experience.data.description}
+        </p>
+        <ul class="text-sm text-gray-600 mb-4 space-y-2">
+          {experience.data.responsibilities.map((responsibility) => (
+            <li>{responsibility}</li>
+          ))}
+        </ul>
+        <div class="text-xs text-gray-500">
+          tech_stack: [{experience.data.techStack.join(', ')}]
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
