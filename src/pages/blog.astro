@@ -1,0 +1,46 @@
+---
+import { User } from "lucide-react";
+import React, { useState } from "react";
+import Layout from "../layouts/Layout.astro";
+import Navigation from "../components/Navigation.astro";
+import BlogList3 from "../components/BlogList3.astro";
+---
+
+<Layout>
+  <div class="min-h-screen bg-gray-100 font-mono">
+    <div class="max-w-3xl mx-auto px-4 py-8">
+      {/* Avatar Section */}
+      <div class="flex justify-center mb-8">
+        <div
+          class="w-32 h-32 rounded-full bg-gray-200 flex items-center justify-center relative group overflow-hidden">
+          {/* Default Icon */}
+          <div
+            class="absolute inset-0 flex items-center justify-center group-hover:opacity-0 transition-opacity duration-300">
+            <User size={48} color={"black"} />
+          </div>
+
+          {/* Profile Picture */}
+          <img
+            src="/profile-pixel.png"
+            alt="Profile"
+            class="absolute inset-0 w-full h-full object-cover rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          />
+        </div>
+      </div>
+
+      {/* Navigation */}
+      <Navigation />
+
+      <h2 class="text-lg mb-4">
+        $ ls -l <span class="text-gray-800 font-bold">/blog</span>
+      </h2>
+
+      <BlogList3 />
+
+      {/* Footer */}
+      <footer class="text-center text-sm text-gray-500">
+        <p>© {new Date().getFullYear()} // all rights reserved</p>
+      </footer>
+    </div>
+  </div>
+</Layout>

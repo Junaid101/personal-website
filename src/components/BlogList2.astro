@@ -1,0 +1,41 @@
+---
+// src/components/BlogList2.astro
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blogposts');
+const sortedPosts = posts.sort((a, b) => 
+  new Date(b.data.publishedDate).getTime() - new Date(a.data.publishedDate).getTime()
+);
+---
+
+<section class="mb-16">
+  <h2 class="text-2xl font-bold mb-8">Latest Articles</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {sortedPosts.map((post) => (
+      <a href={`/blog/${post.slug}`} class="group">
+        <article class="h-full bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+          <div class="p-6">
+            <div class="flex flex-wrap gap-2 mb-4">
+              {post.data.tags.map((tag) => (
+                <span class="text-xs px-3 py-1 bg-gray-100 text-gray-600 rounded-full">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <h3 class="font-bold text-lg mb-2 group-hover:text-blue-600 transition-colors">
+              {post.data.title}
+            </h3>
+            <p class="text-sm text-gray-600 mb-4">{post.data.shortIntro}</p>
+            <time class="text-xs text-gray-500">
+              {new Date(post.data.publishedDate).toLocaleDateString('en-US', {
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric'
+              })}
+            </time>
+          </div>
+        </article>
+      </a>
+    ))}
+  </div>
+</section>

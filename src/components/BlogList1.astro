@@ -1,0 +1,39 @@
+---
+// src/components/BlogList1.astro
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blogposts');
+const sortedPosts = posts.sort((a, b) => 
+  new Date(b.data.publishedDate).getTime() - new Date(a.data.publishedDate).getTime()
+);
+---
+
+<section class="mb-16">
+  <h2 class="text-lg font-bold mb-4">$ ls -l /blog</h2>
+  <div class="space-y-4">
+    {sortedPosts.map((post) => (
+      <a href={`/blog/${post.slug}`} class="block">
+        <div class="bg-white p-6 border border-gray-200 hover:border-gray-400 transition-colors">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-mono font-bold">{post.data.title}</h3>
+            <span class="text-xs text-gray-500">
+              {new Date(post.data.publishedDate).toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric'
+              })}
+            </span>
+          </div>
+          <p class="text-sm text-gray-600 mb-2">{post.data.shortIntro}</p>
+          <div class="flex gap-2">
+            {post.data.tags.map((tag) => (
+              <span class="text-xs px-2 py-1 bg-gray-100 text-gray-600 rounded">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      </a>
+    ))}
+  </div>
+</section>
