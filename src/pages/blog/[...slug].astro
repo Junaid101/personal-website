@@ -19,19 +19,19 @@ const { Content } = await post.render();
 <div class="min-h-screen bg-gray-200">
   <article class=" font-mono max-w-2xl mx-auto py-16 px-4 ">
     <header class="mb-16">
-      <div class="mb-6 flex items-center">
-        <button class="text-sm text-gray-500 mr-4" onclick="window.history.back()">
+      <div class="mb-6">
+        <button class="flex flex-row place-items-center text-sm gap-4 text-gray-500 mr-4 hover:text-black" onclick="window.history.back()">
           <ArrowBigLeft/>
+          <time class="text-sm">
+            {new Date(post.data.publishedDate).toLocaleDateString('en-GB', {
+              month: 'long',
+              day: 'numeric',
+              year: 'numeric'
+            })}
+          </time>
         </button>
-        <time class="text-sm text-gray-500">
-          {new Date(post.data.publishedDate).toLocaleDateString('en-GB', {
-            month: 'long',
-            day: 'numeric',
-            year: 'numeric'
-          })}
-        </time>
       </div>
-      <h1 class="text-3xl font-bold mb-4">{post.data.title}</h1>
+      <h1 class="text-3xl font-bold my-4">{post.data.title}</h1>
       <p class="text-xl text-gray-600 mb-6">{post.data.shortIntro}</p>
       <div class="flex flex-wrap gap-3">
         {post.data.tags.map((tag) => (
