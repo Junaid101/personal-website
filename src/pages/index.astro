@@ -60,8 +60,8 @@ import Experience from '../components/Experience.astro';
 
       {/* About Section */}
       <section id="about" class="mb-16">
-        <h2 class="text-lg font-bold mb-4">
-          $ cat about.txt
+        <h2 class="text-lg mb-4">
+          $ cat <span class="text-gray-800 font-bold">about.txt</span>
         </h2>
         <div class="bg-white p-6 border border-gray-200">
           <p class="text-sm leading-relaxed text-gray-600">
@@ -75,12 +75,17 @@ import Experience from '../components/Experience.astro';
 
       {/* Experience Section */}
       <section id="experience" class="mb-16">
+        <h2 class="text-lg mb-4">
+          $ ls -l <span class="text-gray-800 font-bold">/experience</span>
+        </h2>
         <Experience />
       </section>
 
       {/* Projects Section */}
       <section id="projects" class="mb-16">
-        <h2 class="text-lg font-bold mb-4">$ ls -l /projects</h2>
+        <h2 class="text-lg mb-4">
+          $ ls -l <span class="text-gray-800 font-bold">/projects</span>
+        </h2>
         <div class="space-y-4">
           <div class="bg-white p-6 border border-gray-200">
             <h3 class="font-bold mb-2">NFT Staking App @ Pixelmon</h3>
@@ -102,7 +107,9 @@ import Experience from '../components/Experience.astro';
 
       {/* Skills Section */}
       <section id="skills" class="mb-16">
-        <h2 class="text-lg font-bold mb-4">$ cat skills.json</h2>
+        <h2 class="text-lg mb-4">
+          $ cat <span class="text-gray-800 font-bold">skills.json</span>
+        </h2>
         <div class="bg-white p-6 border border-gray-200">
           <div class="space-y-4">
             <div>
@@ -131,7 +138,9 @@ import Experience from '../components/Experience.astro';
 
       {/* Contact Section */}
       <section id="contact" class="mb-16">
-        <h2 class="text-lg font-bold mb-4">$ contact --help</h2>
+        <h2 class="text-lg mb-4">
+          $ contact <span class="text-gray-800 font-bold">--help</span>
+        </h2>
         <div class="bg-white p-6 border border-gray-200">
           <div class="flex flex-col space-y-2">
             <div class="flex-col justify-center space-y-2">
