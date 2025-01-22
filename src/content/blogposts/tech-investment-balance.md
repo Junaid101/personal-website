@@ -1,7 +1,7 @@
 ---
 title: "The Technology Investment Paradox: Finding Balance in Small Business Growth"
 shortIntro: "Exploring how small businesses navigate the delicate balance between under-investing and over-investing in technology"
-publishedDate: "2024-01-21"
+publishedDate: "2025-01-12"
 tags: ["business strategy", "technology", "small business", "digital transformation"]
 ---
 

@@ -21,7 +21,7 @@ const blogposts = defineCollection({
     shortIntro: z.string(),
     publishedDate: z.string(),
     updatedDate: z.string().optional(), // Make this optional since not all posts will be updated
-    tags: z.array(z.string()),
+    tags: z.array(z.string())
   })
 });
 
