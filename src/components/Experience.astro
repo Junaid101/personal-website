@@ -29,7 +29,7 @@ const sortedExperiences = experiences.sort((a, b) => {
         <p class="text-sm text-gray-600 mb-4">
           {experience.data.description}
         </p>
-        <ul class="text-sm text-gray-600 mb-4 space-y-2">
+        <ul class="text-sm text-gray-600 mb-4 space-y-2 list-outside list-disc ml-5">
           {experience.data.responsibilities.map((responsibility) => (
             <li>{responsibility}</li>
           ))}

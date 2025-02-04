@@ -1,0 +1,54 @@
+---
+// src/pages/blog/[...slug].astro
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import {ArrowBigLeft } from "lucide-react";
+
+export async function getStaticPaths() {
+  const blogPosts = await getCollection('blogposts');
+  return blogPosts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+<Layout>  
+<div class="min-h-screen bg-gray-200">
+  <article class=" font-mono max-w-2xl mx-auto py-16 px-4 ">
+    <header class="mb-16">
+      <div class="mb-6">
+        <button class="flex flex-row place-items-center text-sm gap-4 text-gray-500 mr-4 hover:text-black" onclick="window.history.back()">
+          <ArrowBigLeft/>
+          <time class="text-sm">
+            {new Date(post.data.publishedDate).toLocaleDateString('en-GB', {
+              month: 'long',
+              day: 'numeric',
+              year: 'numeric'
+            })}
+          </time>
+        </button>
+      </div>
+      <h1 class="text-3xl font-bold my-4">{post.data.title}</h1>
+      <p class="text-xl text-gray-600 mb-6">{post.data.shortIntro}</p>
+      <div class="flex flex-wrap gap-3">
+        {post.data.tags.map((tag) => (
+          <span class="text-sm text-gray-500">#{tag}</span>
+        ))}
+      </div>
+    </header>
+    <div class="max-w-none prose prose-gray [&>p]:mb-6 [&>h2]:font-bold [&>pre]:mb-3 [&>pre]:rounded-md [&>pre]:p-4 ">
+      <Content />
+    </div>
+
+    <!-- backup designed content tailwind -->
+    <!-- <div class="max-w-none prose prose-gray [&>p]:mb-6 [&>h2]:font-bold [&>pre]:mb-3 [&>pre]:rounded-md [&>pre]:p-4 ">
+      <Content />
+    </div>   -->
+  </article>
+
+</div>
+
+</Layout>
