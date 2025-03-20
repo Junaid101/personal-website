@@ -1,3 +1,8 @@
+---
+// src/layouts/Layout.astro
+const { title } = Astro.props;
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -5,7 +10,7 @@
 		<link rel="sitemap" href="/sitemap-index.xml" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.png" />
-		<title>Junaid Hossein - Personal Blog</title>
+		<title>{title || "Junaid Hossein - Personal Blog"}</title>
 		<meta name="description" content="Welcome to Junaid Hossein's personal blog where I share my thoughts, experiences, and insights on various topics.">
 	</head>
 	<body>

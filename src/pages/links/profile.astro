@@ -1,0 +1,134 @@
+---
+// Import necessary components and data
+import Layout from '../../layouts/Layout.astro';
+import { Search, Menu } from 'lucide-react';
+
+// This would typically come from your CMS or data source
+const profile = {
+  name: "Your Name",
+  title: "Software Engineer & Technical Writer",
+  bio: "I'm a software engineer and writer, focusing on web development, technology, and digital transformation.",
+  image: "/placeholder.svg?height=200&width=200",
+  sections: {
+    whatICover: `I write about modern web development practices and emerging technologies, with a particular focus on how these tools and techniques can be used to build better digital experiences. I try to bridge the gap between complex technical concepts and practical implementation, making technology more accessible to everyone.`,
+    background: `With over a decade of experience in software development, I've worked across various domains from startups to enterprise solutions. My background in both frontend and backend development gives me a unique perspective on full-stack development and system architecture.`
+  }
+};
+
+const navItems = [
+  { label: 'About', href: '#about' },
+  { label: 'Contact', href: '#contact' },
+  { label: 'Featured', href: '#featured' },
+  { label: 'Latest', href: '#latest' }
+];
+---
+
+<Layout>
+  {/* Header */}
+  <header class="border-b border-gray-200">
+    <div class="max-w-screen-xl mx-auto px-4 py-3 flex items-center justify-between">
+      <button class="p-2 hover:bg-gray-100 rounded-md lg:hidden">
+        <Menu/>
+      </button>
+      
+      <div class="hidden lg:flex items-center space-x-6">
+        <button class="p-2 hover:bg-gray-100 rounded-md">
+          <Menu />
+        </button>
+        <button class="p-2 hover:bg-gray-100 rounded-md">
+          <Search />
+        </button>
+      </div>
+
+      <div class="flex-1 text-center">
+        <h1 class="font-serif text-xl lg:text-2xl tracking-tight">
+          The Digital Times
+        </h1>
+      </div>
+
+      <div class="flex items-center space-x-4">
+        <button class="hidden lg:block p-2 hover:bg-gray-100 rounded-md">
+          <Search />
+        </button>
+        <button class="bg-blue-700 text-white px-4 py-2 text-sm font-semibold rounded hover:bg-blue-800">
+          Subscribe
+        </button>
+        <button class="text-sm font-semibold">
+          Account
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-screen-md mx-auto px-4 py-12">
+    {/* Profile Section */}
+    <div class="text-center mb-12">
+      <div class="mb-6 flex justify-center">
+        <img
+          src={profile.image || "/placeholder.svg"}
+          alt={profile.name}
+          class="w-32 h-32 rounded-full object-cover border-2 border-gray-200"
+        />
+      </div>
+      <h1 class="font-serif text-4xl font-bold mb-4">{profile.name}</h1>
+      <p class="text-gray-600 text-xl max-w-2xl mx-auto">
+        {profile.title}
+      </p>
+    </div>
+
+    {/* Navigation */}
+    <nav class="border-b border-gray-200 mb-12">
+      <ul class="flex space-x-8">
+        {navItems.map(item => (
+          <li>
+            <a
+              href={item.href}
+              class="inline-block py-4 text-sm font-semibold text-gray-600 hover:text-black hover:border-b-2 hover:border-black"
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    {/* Content Sections */}
+    <div class="space-y-12">
+      <section>
+        <h2 class="font-serif text-2xl font-bold mb-6">What I Cover</h2>
+        <p class="text-gray-800 leading-relaxed">
+          {profile.sections.whatICover}
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-serif text-2xl font-bold mb-6">My Background</h2>
+        <p class="text-gray-800 leading-relaxed">
+          {profile.sections.background}
+        </p>
+      </section>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  /* Custom styles for NYT-like typography */
+  @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap');
+
+  .font-serif {
+    font-family: 'Libre Baskerville', Georgia, Cambria, 'Times New Roman', Times, serif;
+  }
+
+  /* Enhance link interactions */
+  a {
+    transition: all 0.2s ease-in-out;
+  }
+
+  /* Improve text readability */
+  p {
+    font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
+    font-size: 1.125rem;
+    line-height: 1.8;
+  }
+</style>
+

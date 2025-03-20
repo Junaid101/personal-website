@@ -41,3 +41,47 @@ const sortedExperiences = experiences.sort((a, b) => {
     ))}
   </div>
 </section>
+
+
+<section id="experience" >
+  <div class="w-full max-w-6xl mx-auto px-4 md:px-6 py-24">
+    <div class="flex flex-col justify-center divide-y divide-slate-200 [&>*]:py-16">
+
+      <div class="w-full max-w-3xl mx-auto">
+        <div class="-my-6">
+          {sortedExperiences.map((experience) => (
+            <div class="relative pl-8 sm:pl-32 py-6 group" key={experience.data.title}>
+              <!-- Label -->
+              <div class="font-medium text-indigo-500 mb-1 sm:mb-0">
+                {experience.data.company}
+              </div>
+              <!-- Timeline marker and content -->
+              <div class="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-slate-300 sm:before:ml-[6.5rem] before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:bg-indigo-600 after:border-4 after:box-content after:border-slate-50 after:rounded-full sm:after:ml-[6.5rem] after:-translate-x-1/2 after:translate-y-1.5">
+                <time class="sm:absolute left-0 translate-y-0.5 inline-flex items-center justify-center text-xs font-semibold uppercase w-20 h-6 mb-3 sm:mb-0 text-emerald-600 bg-emerald-100 rounded-full">
+                  {new Date(experience.data.startDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })} - {experience.data.endDate === 'present' ? 'Present' : new Date(experience.data.endDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+                </time>
+                <div class="text-xl font-bold text-slate-900">
+                  {experience.data.title}
+                </div>
+              </div>
+              <!-- Description -->
+              <div class="text-slate-500">
+                {experience.data.description}
+              </div>
+              <!-- Responsibilities -->
+              <ul class="text-sm text-slate-500 mt-2 space-y-2 list-outside list-disc ml-5">
+                {experience.data.responsibilities.map((responsibility) => (
+                  <li>{responsibility}</li>
+                ))}
+              </ul>
+              <!-- Tech stack -->
+              <div class="text-xs text-gray-500 mt-4">
+                tech_stack: [{experience.data.techStack.join(', ')}]
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
