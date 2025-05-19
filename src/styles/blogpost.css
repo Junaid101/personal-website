@@ -1,0 +1,89 @@
+/* src/styles/markdown.css */
+
+/* Base styles for markdown content */
+.markdown-content {
+  @apply max-w-none font-mono text-gray-800 text-sm leading-relaxed;
+}
+
+/* Headings */
+.markdown-content h1 {
+  @apply text-3xl font-bold mt-12 mb-6;
+}
+
+.markdown-content h2 {
+  @apply text-2xl font-bold mt-10 mb-4;
+}
+
+.markdown-content h3 {
+  @apply text-xl font-bold mt-8 mb-4;
+}
+
+.markdown-content h4 {
+  @apply text-lg font-bold mt-6 mb-3;
+}
+
+/* Paragraphs and spacing */
+.markdown-content p {
+  @apply mb-6 leading-relaxed;
+}
+
+/* Links */
+.markdown-content a {
+  @apply text-blue-600 no-underline hover:underline;
+}
+
+/* Lists */
+.markdown-content ul, 
+.markdown-content ol {
+  @apply mb-6 pl-6;
+}
+
+.markdown-content li {
+  @apply mb-2;
+}
+
+.markdown-content ul li {
+  @apply list-disc;
+}
+
+.markdown-content ol li {
+  @apply list-decimal;
+}
+
+/* Code blocks */
+.markdown-content pre {
+  @apply bg-gray-800 text-gray-100 p-4 rounded-lg mb-6 overflow-x-auto;
+}
+
+/* Inline code */
+.markdown-content :not(pre) > code {
+  @apply bg-gray-100 px-1 rounded text-gray-700 font-mono;
+}
+
+/* Blockquotes */
+.markdown-content blockquote {
+  @apply border-l-4 border-gray-300 pl-4 italic my-6 text-gray-600;
+}
+
+/* Images */
+.markdown-content img {
+  @apply rounded-lg shadow-md my-8 max-w-full;
+}
+
+/* Tables */
+.markdown-content table {
+  @apply w-full mb-6 border-collapse;
+}
+
+.markdown-content th {
+  @apply border border-gray-300 bg-gray-100 p-2 text-left;
+}
+
+.markdown-content td {
+  @apply border border-gray-300 p-2;
+}
+
+/* Horizontal rule */
+.markdown-content hr {
+  @apply my-8 border-t border-gray-200;
+}

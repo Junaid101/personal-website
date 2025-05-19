@@ -1,0 +1,88 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro'; // Adjust path to your layout
+export const prerender = false;
+
+// Fetch all blog posts
+const allPosts = await getCollection('blogposts');
+
+// Get unique tags from all posts
+const allTags = [...new Set(allPosts.flatMap(post => post.data.tags))].sort();
+
+// Get the tag(s) from the URL (e.g., /tags/javascript or /tags/javascript/react)
+const { tag } = Astro.params;
+const selectedTags = tag ? tag.split('/').filter(t => t) : [];
+
+// Filter posts that contain ALL selected tags
+const filteredPosts = selectedTags.length > 0
+  ? allPosts.filter(post => 
+      selectedTags.every(selectedTag => post.data.tags.includes(selectedTag))
+    )
+  : allPosts;
+
+---
+
+<Layout title="Blog Posts by Tags">
+  <main class="container mx-auto px-4 py-8">
+    <!-- Page Header -->
+    <h1 class="text-3xl font-bold mb-6 text-primary">
+      {selectedTags.length > 0 
+        ? `Posts tagged with: ${selectedTags.join(', ')}`
+        : 'All Blog Posts'}
+    </h1>
+
+    <!-- Tags Filter -->
+    <section class="mb-8">
+      <h2 class="text-xl font-semibold mb-4 text-neutral-dark">Filter by Tags:</h2>
+      <div class="flex flex-wrap gap-2">
+        {allTags.map(tag => (
+          <a
+            href={`/tags/${tag}`}
+            class={`px-3 py-1 rounded-full text-sm font-medium transition-colors
+              ${selectedTags.includes(tag)
+                ? 'bg-primary text-white'
+                : 'bg-neutral-light text-neutral-dark hover:bg-accent-300'}`}
+          >
+            {tag}
+          </a>
+        ))}
+        {selectedTags.length > 0 && (
+          <a
+            href="/tags"
+            class="px-3 py-1 rounded-full text-sm font-medium bg-accent-500 text-white hover:bg-accent-400"
+          >
+            Clear Filters
+          </a>
+        )}
+      </div>
+    </section>
+
+    <!-- Posts List -->
+    <section>
+      {filteredPosts.length > 0 ? (
+        <ul class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {filteredPosts.map(post => (
+            <li class="p-4 bg-white shadow-md rounded-lg border border-neutral-light">
+              <a href={`/blog/${post.slug}`} class="hover:text-primary">
+                <h3 class="text-xl font-semibold mb-2">{post.data.title}</h3>
+                <p class="text-neutral-dark mb-2">{post.data.shortIntro}</p>
+                <p class="text-sm text-neutral-dark">
+                  Published: {new Date(post.data.publishedDate).toLocaleDateString()}
+                </p>
+                <div class="mt-2 flex flex-wrap gap-2">
+                  {post.data.tags.map(tag => (
+                    <span class="px-2 py-1 text-xs bg-accent-100 text-accent-500 rounded">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="text-neutral-dark">No posts found for the selected tags.</p>
+      )}
+    </section>
+  </main>
+</Layout>
