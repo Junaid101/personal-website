@@ -1,23 +1,24 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro'; // Adjust path to your layout
-
-// Fetch all blog posts
-const allPosts = await getCollection('blogposts');
-
-// Get unique tags from all posts
-const allTags = [...new Set(allPosts.flatMap(post => post.data.tags))].sort();
+import Navigation from '../../components/Navigation.astro'; // Reuse Navigation component
+import { User } from 'lucide-react'; // Assuming lucide-astro for icons
 
 // Define getStaticPaths to generate routes
-export function getStaticPaths() {
-  // Generate paths for /tags (all posts) and each individual tag
-  const paths = [
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blogposts');
+  const allTags = [...new Set(allPosts.flatMap(post => post.data.tags))].sort();
+  return [
     { params: { tag: undefined } }, // Route for /tags
     ...allTags.map(tag => ({ params: { tag } })), // Routes for /tags/[tag]
   ];
-
-  return paths;
 }
+
+// Fetch all blog posts (for rendering the page)
+const allPosts = await getCollection('blogposts');
+
+// Get unique tags from all posts (for rendering the tag filter)
+const allTags = [...new Set(allPosts.flatMap(post => post.data.tags))].sort();
 
 // Get the tag(s) from the URL (e.g., /tags/javascript or /tags/javascript/react)
 interface Params {
@@ -35,25 +36,50 @@ const filteredPosts = selectedTags.length > 0
 ---
 
 <Layout title="Blog Posts by Tags">
-  <main class="container mx-auto px-4 py-8">
-    <!-- Page Header -->
-    <h циклом="text-3xl font-bold mb-6 text-primary">
-      {selectedTags.length > 0 
-        ? `Posts tagged with: ${selectedTags.join(', ')}`
-        : 'All Blog Posts'}
-    </h1>
+  <div class="min-h-screen bg-gray-100 font-mono">
+    <div class="max-w-3xl mx-auto px-4 py-8">
+      <!-- Avatar Section (optional, included to match design) -->
+      <div class="flex justify-center mb-8">
+        <div
+          class="w-32 h-32 rounded-full bg-gray-200 flex items-center justify-center relative group overflow-hidden"
+        >
+          <!-- Default Icon -->
+          <div
+            class="absolute inset-0 flex items-center justify-center group-hover:opacity-0 transition-opacity duration-300"
+          >
+            <User size={48} color="black" />
+          </div>
 
-    <!-- Tags Filter -->
-    <section class="mb-8">
-      <h2 class="text-xl font-semibold mb-4 text-neutral-dark">Filter by Tags:</h2>
-      <div class="flex flex-wrap gap-2">
+          <!-- Profile Picture -->
+          <img
+            src="/profile-pixel.png"
+            alt="Profile"
+            class="absolute inset-0 w-full h-full object-cover rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          />
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <Navigation />
+
+      <!-- Heading -->
+      <h2 class="text-lg mb-4">
+        $ ls -l <span class="text-gray-800 font-bold">
+          {selectedTags.length > 0 
+            ? `/tags/${selectedTags.join('/')}`
+            : '/tags'}
+        </span>
+      </h2>
+
+      <!-- Tags Filter -->
+      <div class="mb-8 flex flex-wrap gap-2">
         {allTags.map(tag => (
           <a
             href={`/tags/${tag}`}
             class={`px-3 py-1 rounded-full text-sm font-medium transition-colors
               ${selectedTags.includes(tag)
-                ? 'bg-primary text-white'
-                : 'bg-neutral-light text-neutral-dark hover:bg-accent-300'}`}
+                ? 'bg-gray-800 text-white'
+                : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
           >
             {tag}
           </a>
@@ -61,40 +87,42 @@ const filteredPosts = selectedTags.length > 0
         {selectedTags.length > 0 && (
           <a
             href="/tags"
-            class="px-3 py-1 rounded-full text-sm font-medium bg-accent-500 text-white hover:bg-accent-400"
+            class="px-3 py-1 rounded-full text-sm font-medium bg-gray-200 text-gray-800 hover:bg-gray-300"
           >
             Clear Filters
           </a>
         )}
       </div>
-    </section>
 
-    <!-- Posts List -->
-    <section>
-      {filteredPosts.length > 0 ? (
-        <ul class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {filteredPosts.map(post => (
-            <li class="p-4 bg-white shadow-md rounded-lg border border-neutral-light">
-              <a href={`/blog/${post.slug}`} class="hover:text-primary">
-                <h3 class="text-xl font-semibold mb-2">{post.data.title}</h3>
-                <p class="text-neutral-dark mb-2">{post.data.shortIntro}</p>
-                <p class="text-sm text-neutral-dark">
-                  Published: {new Date(post.data.publishedDate).toLocaleDateString()}
-                </p>
-                <div class="mt-2 flex flex-wrap gap-2">
-                  {post.data.tags.map(tag => (
-                    <span class="px-2 py-1 text-xs bg-accent-100 text-accent-500 rounded">
-                      {tag}
+      <!-- Posts List -->
+      <section class="mb-8">
+        {filteredPosts.length > 0 ? (
+          <ul class="space-y-6">
+            {filteredPosts.map(post => (
+              <li class="p-4 bg-white rounded-lg shadow-md">
+                <a href={`/blog/${post.slug}`} class="block hover:text-gray-800 transition-colors">
+                  <h3 class="text-xl font-semibold mb-2">{post.data.title}</h3>
+                  <p class="text-gray-600 mb-2">{post.data.shortIntro}</p>
+                  <div class="flex flex-wrap gap-2 text-sm text-gray-500">
+                    <span>
+                      {new Date(post.data.publishedDate).toLocaleDateString()}
                     </span>
-                  ))}
-                </div>
-              </a>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p class="text-neutral-dark">No posts found for the selected tags.</p>
-      )}
-    </section>
-  </main>
+                    <span>•</span>
+                    <span>{post.data.tags.join(', ')}</span>
+                  </div>
+                </a>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p class="text-gray-600">No posts found for the selected tags.</p>
+        )}
+      </section>
+
+      <!-- Footer -->
+      <footer class="text-center text-sm text-gray-500">
+        <p>© {new Date().getFullYear()} // all rights reserved</p>
+      </footer>
+    </div>
+  </div>
 </Layout>
