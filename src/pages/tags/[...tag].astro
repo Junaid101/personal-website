@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro'; // Adjust path to your layout
-export const prerender = false;
 
 // Fetch all blog posts
 const allPosts = await getCollection('blogposts');
@@ -9,8 +8,22 @@ const allPosts = await getCollection('blogposts');
 // Get unique tags from all posts
 const allTags = [...new Set(allPosts.flatMap(post => post.data.tags))].sort();
 
+// Define getStaticPaths to generate routes
+export function getStaticPaths() {
+  // Generate paths for /tags (all posts) and each individual tag
+  const paths = [
+    { params: { tag: undefined } }, // Route for /tags
+    ...allTags.map(tag => ({ params: { tag } })), // Routes for /tags/[tag]
+  ];
+
+  return paths;
+}
+
 // Get the tag(s) from the URL (e.g., /tags/javascript or /tags/javascript/react)
-const { tag } = Astro.params;
+interface Params {
+  tag?: string;
+}
+const { tag } = Astro.params as Params;
 const selectedTags = tag ? tag.split('/').filter(t => t) : [];
 
 // Filter posts that contain ALL selected tags
@@ -19,13 +32,12 @@ const filteredPosts = selectedTags.length > 0
       selectedTags.every(selectedTag => post.data.tags.includes(selectedTag))
     )
   : allPosts;
-
 ---
 
 <Layout title="Blog Posts by Tags">
   <main class="container mx-auto px-4 py-8">
     <!-- Page Header -->
-    <h1 class="text-3xl font-bold mb-6 text-primary">
+    <h циклом="text-3xl font-bold mb-6 text-primary">
       {selectedTags.length > 0 
         ? `Posts tagged with: ${selectedTags.join(', ')}`
         : 'All Blog Posts'}
