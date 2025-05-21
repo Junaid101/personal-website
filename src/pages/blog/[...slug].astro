@@ -30,7 +30,7 @@ const wordCount = text.split(/\s+/).length;
 const readingTime = Math.max(1, Math.ceil(wordCount / wordsPerMinute));
 ---
 
-<Layout>
+<Layout title={post.data.title} description={post.data.shortIntro}>
   <div class="min-h-screen bg-gray-100">
     <article class="max-w-2xl mx-auto py-10 px-4 sm:px-6 lg:py-16">
       <header class="mb-12">

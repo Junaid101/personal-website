@@ -10,59 +10,59 @@ import {
   ArrowRight,
   User,
   Instagram,
-} from "lucide-react";
-import React, { useState } from "react";
-import Layout from "../layouts/Layout.astro";
+} from 'lucide-react'; // Use lucide-astro for Astro compatibility
+import Layout from '../layouts/Layout.astro';
+import Experience from '../components/Experience.astro';
+import Navigation from '../components/Navigation.astro';
+
+// Note: Removed React and useState as they weren't used in the original code
 ---
 
 <Layout>
-  <div class="min-h-screen bg-gray-100 font-mono">
-    <div class="max-w-3xl mx-auto px-4 py-8">
-      {/* Avatar Section */}
+  <div class="min-h-screen bg-black text-green-400 font-mono relative overflow-hidden">
+    <!-- Scanline background effect -->
+    <div class="absolute inset-0 bg-[linear-gradient(rgba(0,255,0,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,0,0.05)_1px,transparent_1px)] bg-[size:4px_4px] opacity-50 pointer-events-none"></div>
+
+    <div class="max-w-3xl mx-auto px-4 py-8 relative z-10">
+      <!-- Avatar Section -->
       <div class="flex justify-center mb-8">
-        <div
-          class="w-32 h-32 rounded-full bg-gray-200 flex items-center justify-center relative group overflow-hidden">
-          {/* Default Icon */}
-          <div
-            class="absolute inset-0 flex items-center justify-center group-hover:opacity-0 transition-opacity duration-300">
-            <User size={48} color={"black"} />
+        <div class="w-32 h-32 rounded-sm border-2 border-green-400 flex items-center justify-center relative group overflow-hidden shadow-[0_0_10px] shadow-green-400">
+          <!-- Default Icon -->
+          <div class="absolute inset-0 flex items-center justify-center group-hover:opacity-0 transition-opacity duration-300">
+            <User size={48} color="rgb(34,197,94)" />
           </div>
 
-          {/* Profile Picture */}
+          <!-- Profile Picture -->
           <img
             src="/profile-pixel.png"
             alt="Profile"
-            class="absolute inset-0 w-full h-full object-cover rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            class="absolute inset-0 w-full h-full object-cover rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           />
         </div>
       </div>
 
-      {/* Navigation */}
-      <nav class="mb-16">
-        <div class="flex justify-center space-x-6 text-sm">
-          <a href="#about" class="text-gray-600 hover:text-black">/about</a>
-          <a href="#experience" class="text-gray-600 hover:text-black">/experience</a>
-          <a href="#projects" class="text-gray-600 hover:text-black">/projects</a>
-          <a href="#skills" class="text-gray-600 hover:text-black">/skills</a>
-        </div>
-      </nav>
+      <!-- Navigation -->
+      <Navigation />
 
-      {/* Header Section */}
+      <!-- Header Section -->
       <header class="mb-16 text-center">
-        <h1 class="text-2xl font-bold mb-4">Junaid Hossein</h1>
-        <div class="text-sm text-gray-600 space-y-2">
+        <h1 class="text-2xl font-bold mb-4 animate-glitch" style="text-shadow: 0 0 5px rgb(34,197,94);">
+          Junaid Hossein
+        </h1>
+        <div class="text-sm text-cyan-400 space-y-2">
           <p>technical_product_manager.exe</p>
+          <p>engineering_manager.exe</p>
           <p>Düsseldorf, Germany</p>
         </div>
       </header>
 
-      {/* About Section */}
+      <!-- About Section -->
       <section id="about" class="mb-16">
-        <h2 class="text-lg font-bold mb-4">
-          $ cat about.txt
+        <h2 class="text-lg mb-4">
+          $ cat <span class="text-white font-bold">about.txt</span>
         </h2>
-        <div class="bg-white p-6 border border-gray-200">
-          <p class="text-sm leading-relaxed text-gray-600">
+        <div class="bg-gray-900 p-6 border-2 border-green-400 rounded-sm shadow-[0_0_8px] shadow-green-400">
+          <p class="text-sm leading-relaxed text-green-400">
             Technical PM with strong system design experience in both enterprise and startup
             domains. I design applications to be Reliable, Scalable, and Maintainable. Experienced
             in refining product requirements and communicating them through database modelling, API
@@ -71,134 +71,61 @@ import Layout from "../layouts/Layout.astro";
         </div>
       </section>
 
-      {/* Experience Section */}
+      <!-- Experience Section -->
       <section id="experience" class="mb-16">
-        <h2 class="text-lg font-bold mb-4">$ ls -l /experience</h2>
-        <div class="space-y-4">
-          <div class="bg-white p-6 border border-gray-200">
-            <h3 class="font-bold mb-2">
-              Sr. Technical Product Manager, Core Team @ Movido Media Verlag GmbH
-            </h3>
-            <p class="text-xs text-gray-500 mb-2">June 2021 - Present</p>
-            <p class="text-sm text-gray-600 mb-4">
-              Acted as a PM for a SaaS CRM product – a subscription management system with
-              invoicing, third-party API integration, support ticketing, audit logs, analytics, and
-              income forecasting.
-            </p>
-            <ul class="text-sm text-gray-600 mb-4 space-y-2">
-              <li>
-                Performed requirement collection, prioritisation and building a product roadmap with
-                stakeholders.
-              </li>
-              <li>Defined APIs, system components and data structures for development.</li>
-              <li>
-                Rolled out a data migration of 70,000 customers with associated documents, support
-                tickets, and other database entities.
-              </li>
-              <li>
-                Led a team in extending an open-source ticketing solution, achieving 25% improvement
-                in turnaround time.
-              </li>
-              <li>Performed technical gap analysis for integration with a new Customer App.</li>
-            </ul>
-            <div class="text-xs text-gray-500">
-              tech_stack: [Golang, Angular, React, MySQL, Redis]
-            </div>
-          </div>
-
-          <div class="bg-white p-6 border border-gray-200">
-            <h3 class="font-bold mb-2">Product Manager, Platform Team @ Shohoz.com</h3>
-            <p class="text-xs text-gray-500 mb-2">Feb 2020 - May 2021</p>
-            <p class="text-sm text-gray-600 mb-4">
-              Conducted requirement engineering, API design and development management for
-              highly-available, multi-tenant Identity and Access Management Service, GeoLocation
-              Storage Service, and User Notification service.
-            </p>
-            <ul class="text-sm text-gray-600 mb-4 space-y-2">
-              <li>
-                Built real-time notification service for 20,000 riders and 2 million users over AMQP
-                and MQTT.
-              </li>
-              <li>
-                Achieved 200% increase in service uptime and USD 24,000 savings in infrastructure
-                costs.
-              </li>
-              <li>
-                Designed migration strategy of 2 million users for multi-vertical SSO mechanism.
-              </li>
-              <li>Led 25-member team for COVID-19 contact-tracing application development.</li>
-            </ul>
-            <div class="text-xs text-gray-500">tech_stack: [C#.NET, MongoDB, AMQP, MQTT]</div>
-          </div>
-
-          <div class="bg-white p-6 border border-gray-200">
-            <h3 class="font-bold mb-2">
-              Business Analyst (Technology) @ SELISE Digital Platforms AG
-            </h3>
-            <p class="text-xs text-gray-500 mb-2">Dec 2017 - Jan 2020</p>
-            <p class="text-sm text-gray-600 mb-4">
-              Worked on an aPaaS platform built on queue-backed multi-tenant microservices deployed
-              on AWS Cloud.
-            </p>
-            <ul class="text-sm text-gray-600 mb-4 space-y-2">
-              <li>Led 15-member team for Fintech product development for SwissLife AG.</li>
-              <li>
-                Implemented eIDAS-compliant eSignature for 2,000 IFAs across three territories.
-              </li>
-              <li>
-                Integrated finAPI and transactions categorisation service under EU PSD2 Guideline.
-              </li>
-              <li>Worked on IOT Project for Grand Basel using Bluetooth Low Energy Beacons.</li>
-              <li>Designed signal-smoothing algorithm for bluetooth signal processing.</li>
-            </ul>
-            <div class="text-xs text-gray-500">tech_stack: [C#.NET, AWS, BLE, Microservices]</div>
-          </div>
-        </div>
+        <h2 class="text-lg mb-4">
+          $ ls -l <span class="text-white font-bold">/experience</span>
+        </h2>
+        <Experience />
       </section>
 
-      {/* Projects Section */}
+      <!-- Projects Section -->
       <section id="projects" class="mb-16">
-        <h2 class="text-lg font-bold mb-4">$ ls -l /projects</h2>
+        <h2 class="text-lg mb-4">
+          $ ls -l <span class="text-white font-bold">/projects</span>
+        </h2>
         <div class="space-y-4">
-          <div class="bg-white p-6 border border-gray-200">
-            <h3 class="font-bold mb-2">NFT Staking App @ Pixelmon</h3>
-            <p class="text-sm text-gray-600 mb-2">
+          <div class="bg-gray-900 p-6 border-2 border-green-400 rounded-sm shadow-[0_0_8px] shadow-green-400">
+            <h3 class="font-bold mb-2 text-green-400">NFT Staking App @ Pixelmon</h3>
+            <p class="text-sm text-green-400 mb-2">
               PM for #1 traded NFT on OpenSea. Worked with blockchain developers and game designers.
             </p>
-            <div class="text-xs text-gray-500">tech_stack: [Ethereum, Smart Contracts]</div>
+            <div class="text-xs text-cyan-400">tech_stack: [Ethereum, Smart Contracts]</div>
           </div>
 
-          <div class="bg-white p-6 border border-gray-200">
-            <h3 class="font-bold mb-2">FinTech Advisory @ SwissLife Select</h3>
-            <p class="text-sm text-gray-600 mb-2">
+          <div class="bg-gray-900 p-6 border-2 border-green-400 rounded-sm shadow-[0_0_8px] shadow-green-400">
+            <h3 class="font-bold mb-2 text-green-400">FinTech Advisory @ SwissLife Select</h3>
+            <p class="text-sm text-green-400 mb-2">
               Led implementation of eIDAS-compliant eSignature for 2,000 IFAs.
             </p>
-            <div class="text-xs text-gray-500">tech_stack: [C#.NET, AWS, Microservices]</div>
+            <div class="text-xs text-cyan-400">tech_stack: [C#.NET, AWS, Microservices]</div>
           </div>
         </div>
       </section>
 
-      {/* Skills Section */}
+      <!-- Skills Section -->
       <section id="skills" class="mb-16">
-        <h2 class="text-lg font-bold mb-4">$ cat skills.json</h2>
-        <div class="bg-white p-6 border border-gray-200">
+        <h2 class="text-lg mb-4">
+          $ cat <span class="text-white font-bold">skills.json</span>
+        </h2>
+        <div class="bg-gray-900 p-6 border-2 border-green-400 rounded-sm shadow-[0_0_8px] shadow-green-400">
           <div class="space-y-4">
             <div>
-              <h3 class="font-bold mb-2">Technology</h3>
-              <p class="text-sm text-gray-600">
+              <h3 class="font-bold mb-2 text-green-400">Technology</h3>
+              <p class="text-sm text-green-400">
                 System Design, Backend Architecture, Microservices, Python, C#.NET, Angular, React,
                 RabbitMQ, MongoDB
               </p>
             </div>
             <div>
-              <h3 class="font-bold mb-2">Tools</h3>
-              <p class="text-sm text-gray-600">
+              <h3 class="font-bold mb-2 text-green-400">Tools</h3>
+              <p class="text-sm text-green-400">
                 Figma, Sketch, JIRA, GitHub, LucidChart, C4 Diagramming, PowerBI
               </p>
             </div>
             <div>
-              <h3 class="font-bold mb-2">Product Management</h3>
-              <p class="text-sm text-gray-600">
+              <h3 class="font-bold mb-2 text-green-400">Product Management</h3>
+              <p class="text-sm text-green-400">
                 Backlog Management, User Journey Mapping, Story Writing, Business Modelling,
                 Agile/Scrum
               </p>
@@ -207,17 +134,20 @@ import Layout from "../layouts/Layout.astro";
         </div>
       </section>
 
-      {/* Contact Section */}
+      <!-- Contact Section -->
       <section id="contact" class="mb-16">
-        <h2 class="text-lg font-bold mb-4">$ contact --help</h2>
-        <div class="bg-white p-6 border border-gray-200">
+        <h2 class="text-lg mb-4">
+          $ contact <span class="text-white font-bold">--help</span>
+        </h2>
+        <div class="bg-gray-900 p-6 border-2 border-green-400 rounded-sm shadow-[0_0_8px] shadow-green-400">
           <div class="flex flex-col space-y-2">
             <div class="flex-col justify-center space-y-2">
               <a
                 href="https://github.com/Junaid101"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-gray-500 hover:text-black flex items-center space-x-2">
+                class="text-green-400 hover:text-cyan-400 flex items-center space-x-2 hover:underline hover:decoration-cyan-400"
+              >
                 <Github size={20} />
                 <span class="text-sm">/github</span>
               </a>
@@ -225,13 +155,15 @@ import Layout from "../layouts/Layout.astro";
                 href="https://linkedin.com/in/junaidhgazi"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-gray-500 hover:text-black flex items-center space-x-2">
+                class="text-green-400 hover:text-cyan-400 flex items-center space-x-2 hover:underline hover:decoration-cyan-400"
+              >
                 <Linkedin size={20} />
                 <span class="text-sm">/linkedin</span>
               </a>
               <a
                 href="mailto:junaid.h.gazi@gmail.com"
-                class="text-gray-500 hover:text-black flex items-center space-x-2">
+                class="text-green-400 hover:text-cyan-400 flex items-center space-x-2 hover:underline hover:decoration-cyan-400"
+              >
                 <Mail size={20} />
                 <span class="text-sm">/email</span>
               </a>
@@ -239,20 +171,39 @@ import Layout from "../layouts/Layout.astro";
                 href="https://instagram.com/junaid_1010"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-gray-500 hover:text-black flex items-center space-x-2">
+                class="text-green-400 hover:text-cyan-400 flex items-center space-x-2 hover:underline hover:decoration-cyan-400"
+              >
                 <Instagram size={20} />
                 <span class="text-sm">/instagram</span>
               </a>
             </div>
-            <div class="text-xs text-gray-500 mt-4">echo "Let's connect and collaborate!"</div>
+            <div class="text-xs text-cyan-400 mt-4">echo "Let's connect and collaborate!"</div>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer class="text-center text-sm text-gray-500">
+      <!-- Footer -->
+      <footer class="text-center text-sm text-cyan-400">
         <p>© {new Date().getFullYear()} // all rights reserved</p>
       </footer>
     </div>
+
+    <!-- Inline CSS for glitch effect -->
+    <style>
+      @keyframes glitch {
+        0% { transform: translate(0); }
+        20% { transform: translate(-2px, 2px); }
+        40% { transform: translate(-2px, -2px); }
+        60% { transform: translate(2px, 2px); }
+        80% { transform: translate(2px, -2px); }
+        100% { transform: translate(0); }
+      }
+      .animate-glitch {
+        animation: glitch 0.3s infinite alternate;
+      }
+      .animate-glitch:hover {
+        animation: none;
+      }
+    </style>
   </div>
 </Layout>

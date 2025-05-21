@@ -25,8 +25,37 @@ const blogposts = defineCollection({
   })
 });
 
+// Define the schema for the recipe collection
+const recipes = defineCollection({
+  type: 'content', // 'content' for Markdown/MDX files, 'data' for JSON/YAML
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    image: z.string().optional(),
+    publishedDate: z.date(),
+    updatedDate: z.date().optional(),
+    author: z.string().default('You'),
+    tags: z.array(z.string()).default([]),
+    category: z.string().default('Uncategorized'),
+    prepTime: z.string().optional(),
+    cookTime: z.string().optional(),
+    totalTime: z.string().optional(),
+    servings: z.number(),
+    personalNotes: z.string().optional(),
+    featured: z.boolean().default(false),
+    ingredients: z.array(z.object({
+      quantity: z.number(),
+      unit: z.string(),
+      name: z.string(),
+      notes: z.string().optional(),
+    })),
+    // Actual instructions will be in the MDX body
+  })
+});
+
 
 export const collections = {
   'experience': experience,
   'blogposts': blogposts,
+  'recipes': recipes
 };
