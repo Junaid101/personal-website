@@ -1,5 +1,5 @@
 # src/content/experience/movido.yaml
-title: "Engineering PM, Core and Integrations Team"
+title: "Technical PM, Core and Integrations"
 company: "Movido Media Verlag GmbH"
 startDate: "2021-06-01"
 endDate: "present"
@@ -7,7 +7,7 @@ description: "Acted as a Engineering Manager, Technical PM for a SaaS CRM produc
 responsibilities:
   - "Performed requirement collection, prioritisation and building a product roadmap with stakeholders."
   - "Defined APIs, system components and data structures for development."
-  - "Rolled out a data migration of 70,000 customers with associated documents, support tickets, and other database entities."
+  - "Rolled out a data migration of 90,000 customers with associated documents, support tickets, and other database entities."
   - "Led a team in extending an open-source ticketing solution, achieving 25% improvement in turnaround time."
   - "Performed technical gap analysis for integration with a new Customer App."
 techStack:
