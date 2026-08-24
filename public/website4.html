@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#04080e">
+<title>HELIOX | Next-Gen Photovoltaics</title>
+
+<style>
+:root{
+  --bg:#04080e;
+  --green:#10b981;
+  --cyan:#06b6d4;
+  --card:rgba(8,15,26,.78);
+  --border:rgba(6,182,212,.25);
+  --text:#f8fafc;
+  --muted:#64748b;
+  --mono:'JetBrains Mono','Fira Code',Consolas,monospace;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+html{background:var(--bg)}
+
+body{
+  min-height:100svh;
+  padding:max(1rem,env(safe-area-inset-top))
+          max(1rem,env(safe-area-inset-right))
+          max(1rem,env(safe-area-inset-bottom))
+          max(1rem,env(safe-area-inset-left));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow-x:hidden;
+  overflow-y:auto;
+  position:relative;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+}
+
+/* Background */
+.bg{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:
+    linear-gradient(to right,rgba(16,185,129,.035) 1px,transparent 1px),
+    linear-gradient(to bottom,rgba(6,182,212,.035) 1px,transparent 1px);
+  background-size:50px 50px;
+}
+
+.glow{
+  position:fixed;
+  z-index:0;
+  border-radius:50%;
+  pointer-events:none;
+  filter:blur(140px);
+}
+
+.glow.g{
+  width:430px;
+  height:430px;
+  top:10%;
+  left:15%;
+  background:var(--green);
+  opacity:.1;
+}
+
+.glow.c{
+  width:470px;
+  height:470px;
+  right:15%;
+  bottom:10%;
+  background:var(--cyan);
+  opacity:.1;
+}
+
+/* Main */
+.card{
+  position:relative;
+  z-index:2;
+  width:min(760px,100%);
+  padding:3rem 2.75rem;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  box-shadow:
+    0 0 45px rgba(6,182,212,.07),
+    inset 0 0 20px rgba(16,185,129,.04);
+}
+
+/* Brand */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:1.5rem;
+  color:var(--cyan);
+  font:700 .76rem/1 var(--mono);
+  letter-spacing:.2em;
+  text-transform:uppercase;
+}
+
+.brand:before{
+  content:"";
+  width:7px;
+  height:7px;
+  flex:0 0 7px;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 9px var(--green);
+}
+
+/* Typography */
+.title{
+  margin-bottom:1rem;
+  font-size:clamp(2rem,5vw,2.8rem);
+  font-weight:900;
+  line-height:1.08;
+  letter-spacing:-.035em;
+  background:linear-gradient(135deg,#fff 30%,var(--cyan) 80%,var(--green));
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.sub{
+  max-width:600px;
+  margin-bottom:2rem;
+  color:#94a3b8;
+  font-size:clamp(.88rem,1.8vw,1rem);
+  line-height:1.55;
+}
+
+/* Specs */
+.specs{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:.75rem;
+  padding:1.25rem 0;
+  margin-bottom:2rem;
+  border-top:1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.spec{
+  min-width:0;
+}
+
+.label{
+  margin-bottom:.25rem;
+  color:var(--muted);
+  font:600 .61rem/1.3 var(--mono);
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.value{
+  color:var(--green);
+  font:700 1rem/1.3 var(--mono);
+}
+
+/* Form */
+.form{
+  display:flex;
+  gap:.65rem;
+}
+
+.input,
+.btn{
+  min-height:48px;
+  border-radius:9px;
+  font-family:var(--mono);
+}
+
+.input{
+  flex:1;
+  min-width:0;
+  padding:.8rem 1rem;
+  border:1px solid rgba(6,182,212,.3);
+  outline:0;
+  background:rgba(4,8,14,.8);
+  color:var(--text);
+  font-size:.8rem;
+  transition:.2s;
+}
+
+.input::placeholder{color:#475569}
+
+.input:focus{
+  border-color:var(--green);
+  box-shadow:0 0 14px rgba(16,185,129,.18);
+}
+
+.btn{
+  flex:0 0 auto;
+  padding:.8rem 1.5rem;
+  border:0;
+  background:linear-gradient(135deg,var(--green),var(--cyan));
+  color:#04080e;
+  cursor:pointer;
+  font-size:.73rem;
+  font-weight:700;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  box-shadow:0 0 18px rgba(6,182,212,.25);
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 28px rgba(16,185,129,.4);
+}
+
+.btn:active{transform:translateY(0)}
+
+.input:focus-visible,
+.btn:focus-visible{
+  outline:2px solid var(--green);
+  outline-offset:2px;
+}
+
+/* Status */
+.status{
+  display:flex;
+  justify-content:space-between;
+  gap:1rem;
+  margin-top:1.5rem;
+  color:var(--muted);
+  font:600 .66rem/1.4 var(--mono);
+}
+
+.active{color:var(--cyan)}
+
+/* Tablet */
+@media(max-width:768px){
+  body{
+    align-items:flex-start;
+    padding-top:2rem;
+    padding-bottom:2rem;
+  }
+
+  .card{
+    padding:2.25rem 1.75rem;
+  }
+
+  .specs{
+    grid-template-columns:1fr;
+    gap:0;
+    padding:.35rem 0;
+  }
+
+  .spec{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:.7rem 0;
+    border-bottom:1px solid rgba(255,255,255,.05);
+  }
+
+  .spec:last-child{border-bottom:0}
+
+  .label{margin:0}
+
+  .form{flex-direction:column}
+
+  .input,
+  .btn{width:100%}
+
+  .status{
+    flex-direction:column;
+    gap:.45rem;
+  }
+}
+
+/* Mobile */
+@media(max-width:480px){
+  body{
+    padding:
+      max(.75rem,env(safe-area-inset-top))
+      max(.75rem,env(safe-area-inset-right))
+      max(.75rem,env(safe-area-inset-bottom))
+      max(.75rem,env(safe-area-inset-left));
+  }
+
+  .card{
+    padding:1.5rem 1.15rem;
+    border-radius:15px;
+  }
+
+  .brand{
+    margin-bottom:1.25rem;
+    font-size:.61rem;
+    letter-spacing:.14em;
+  }
+
+  .title{
+    margin-bottom:.9rem;
+    font-size:1.85rem;
+  }
+
+  .sub{
+    margin-bottom:1.7rem;
+    font-size:.84rem;
+    line-height:1.5;
+  }
+
+  .specs{
+    margin-bottom:1.7rem;
+  }
+
+  .spec{
+    padding:.62rem 0;
+  }
+
+  .label{font-size:.57rem}
+
+  .value{font-size:.82rem}
+
+  .input{
+    font-size:16px;
+  }
+
+  .btn{
+    font-size:.69rem;
+  }
+
+  .status{
+    margin-top:1.25rem;
+    font-size:.61rem;
+  }
+
+  .glow.g{
+    width:250px;
+    height:250px;
+    left:-100px;
+    top:10%;
+    filter:blur(90px);
+    opacity:.07;
+  }
+
+  .glow.c{
+    width:280px;
+    height:280px;
+    right:-120px;
+    bottom:10%;
+    filter:blur(100px);
+    opacity:.07;
+  }
+
+  .bg{background-size:35px 35px}
+}
+
+/* Very small phones */
+@media(max-width:360px){
+  .card{padding:1.35rem 1rem}
+
+  .brand{
+    font-size:.57rem;
+    letter-spacing:.11em;
+  }
+
+  .title{font-size:1.7rem}
+
+  .sub{font-size:.81rem}
+
+  .value{font-size:.78rem}
+}
+
+/* Accessibility */
+@media(prefers-reduced-motion:reduce){
+  *{scroll-behavior:auto!important;transition:none!important}
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg" aria-hidden="true"></div>
+<div class="glow g" aria-hidden="true"></div>
+<div class="glow c" aria-hidden="true"></div>
+
+<main class="card">
+
+  <div class="brand">GAIA Matrix // Technologies</div>
+
+  <h1 class="title">
+    Nanoparticle-Based<br>
+    Photovoltaic Coatings
+  </h1>
+
+  <p class="sub">
+    Engineering next-generation printed photovoltaics.
+    Breaking efficiency thresholds through quantum dot surface
+    passivation and dynamic multi-junction bandgap tuning.
+  </p>
+
+  <section class="specs">
+
+    <div class="spec">
+      <div class="label">Target Efficiency</div>
+      <div class="value">CLASSIFIED</div>
+    </div>
+
+    <div class="spec">
+      <div class="label">Cell Architecture</div>
+      <div class="value">CLASSIFIED</div>
+    </div>
+
+    <div class="spec">
+      <div class="label">Loading Cycles</div>
+      <div class="value">CLASSIFIED</div>
+    </div>
+
+  </section>
+
+  <form class="form" onsubmit="event.preventDefault()">
+
+    <input
+      class="input"
+      type="email"
+      placeholder="developer@institution.edu"
+      aria-label="Email address"
+      autocomplete="email"
+      required
+    >
+
+    <button class="btn" type="submit">
+      Request Early Specs
+    </button>
+
+  </form>
+
+  <div class="status">
+    <span>
+      BANDGAP STATUS:
+      <strong class="active">Coming Soon</strong>
+    </span>
+
+    <span>
+      GO-LIVE DATE:
+      <strong>Q4 2026</strong>
+    </span>
+  </div>
+
+</main>
+
+</body>
+</html>
