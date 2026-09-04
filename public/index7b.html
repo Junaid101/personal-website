@@ -1,0 +1,2953 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Gaia Matrix Technologies AG entwickelt nanotechnologische Energiesysteme für Photovoltaik, Leuchttechnologie, Heizung und Energiespeicherung.">
+  <meta name="theme-color" content="#04080e">
+  <title>Gaia Matrix Technologies AG | Energie neu gedacht</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      --bg: #04080e;
+      --bg-soft: #07101a;
+
+      --green: #10b981;
+      --green-hot: #34d399;
+      --cyan: #06b6d4;
+      --cyan-hot: #22d3ee;
+
+      --text: #f8fafc;
+      --text-soft: #cbd5e1;
+      --muted: #64748b;
+      --muted-soft: #94a3b8;
+
+      --border: rgba(6, 182, 212, .22);
+      --border-strong: rgba(6, 182, 212, .42);
+      --divider: rgba(255, 255, 255, .08);
+      --divider-soft: rgba(255, 255, 255, .05);
+
+      --mono: "Geist Mono", "JetBrains Mono", "Fira Code", Consolas, monospace;
+      --geist: Geist, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+      --content: 1200px;
+      --ease: 180ms ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      background: var(--bg);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100svh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--geist);
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+
+    body::selection {
+      background: var(--green);
+      color: var(--bg);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* ---------------------------------------
+       Background
+    --------------------------------------- */
+
+    .backdrop {
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      position: fixed;
+      z-index: 0;
+    }
+
+    .grid {
+      background:
+        linear-gradient(
+          to right,
+          rgba(16, 185, 129, .035) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          to bottom,
+          rgba(6, 182, 212, .035) 1px,
+          transparent 1px
+        );
+      background-size: 50px 50px;
+      inset: 0;
+      position: absolute;
+    }
+
+    .columns {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      height: 100%;
+      margin: 0 auto;
+      max-width: var(--content);
+      padding: 0 28px;
+    }
+
+    .columns span {
+      border-left: 1px solid rgba(6, 182, 212, .035);
+      height: 100%;
+    }
+
+    .columns span:last-child {
+      border-right: 1px solid rgba(6, 182, 212, .035);
+    }
+
+    .orb {
+      border-radius: 50%;
+      filter: blur(140px);
+      position: absolute;
+    }
+
+    .orb.green {
+      background: var(--green);
+      height: 430px;
+      left: 5%;
+      opacity: .08;
+      top: 5%;
+      width: 430px;
+    }
+
+    .orb.cyan {
+      background: var(--cyan);
+      bottom: 5%;
+      height: 470px;
+      opacity: .08;
+      right: 5%;
+      width: 470px;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+    }
+
+    .content {
+      margin: 0 auto;
+      max-width: var(--content);
+      padding: 0 28px;
+      width: 100%;
+    }
+
+    /* ---------------------------------------
+       Type
+    --------------------------------------- */
+
+    .mono {
+      font-family: var(--mono);
+    }
+
+    .text-mono-small {
+      font: 400 .64rem/1.6 var(--mono);
+    }
+
+    .meta {
+      align-items: center;
+      color: var(--cyan);
+      display: inline-flex;
+      font: 600 .66rem/1.3 var(--mono);
+      gap: 9px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .meta::before {
+      background: var(--green);
+      border-radius: 50%;
+      box-shadow: 0 0 9px rgba(16, 185, 129, .75);
+      content: "";
+      flex: 0 0 6px;
+      height: 6px;
+      width: 6px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      letter-spacing: -.045em;
+    }
+
+    h1 {
+      background:
+        linear-gradient(
+          135deg,
+          #fff 28%,
+          var(--cyan-hot) 72%,
+          var(--green-hot)
+        );
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: clamp(2.45rem, 5vw, 4.8rem);
+      font-weight: 800;
+      line-height: .98;
+      max-width: 900px;
+    }
+
+    h2 {
+      background:
+        linear-gradient(
+          135deg,
+          #fff 35%,
+          #dbeafe 72%,
+          var(--cyan-hot)
+        );
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      font-weight: 800;
+      line-height: 1;
+      max-width: 680px;
+    }
+
+    h3 {
+      color: var(--text);
+      font-size: 1.2rem;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    /* ---------------------------------------
+       Navigation
+    --------------------------------------- */
+
+    .nav {
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      background: rgba(4, 8, 14, .72);
+      border-bottom: 1px solid var(--divider);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav-inner {
+      align-items: center;
+      display: flex;
+      height: 72px;
+      justify-content: space-between;
+    }
+
+    .brand {
+      align-items: center;
+      display: inline-flex;
+      font-size: 13px;
+      font-weight: 700;
+      gap: 12px;
+      letter-spacing: .01em;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      align-items: center;
+      border: 1px solid var(--cyan);
+      display: flex;
+      height: 17px;
+      justify-content: center;
+      position: relative;
+      transform: rotate(45deg);
+      width: 17px;
+    }
+
+    .brand-mark::after {
+      background: var(--green);
+      box-shadow: 0 0 8px var(--green);
+      content: "";
+      height: 5px;
+      position: absolute;
+      width: 5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted-soft);
+      font: 500 .68rem/1 var(--mono);
+      letter-spacing: .04em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color var(--ease);
+    }
+
+    .nav-links a:hover {
+      color: var(--cyan-hot);
+    }
+
+    .language-switcher {
+      align-items: center;
+      display: inline-flex;
+      font: 500 .62rem/1 var(--mono);
+      gap: 7px;
+      text-transform: uppercase;
+    }
+
+    .language-switcher a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color var(--ease);
+    }
+
+    .language-switcher a:hover {
+      color: var(--cyan-hot);
+    }
+
+    .language-switcher a[aria-current="page"] {
+      color: var(--green-hot);
+    }
+
+    .language-switcher span {
+      color: var(--muted);
+    }
+
+    /* ---------------------------------------
+       Sections / surfaces
+    --------------------------------------- */
+
+    .section {
+      border-bottom: 1px solid var(--divider);
+      padding: 112px 0;
+      position: relative;
+    }
+
+    .section::before {
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(6, 182, 212, .12),
+        transparent
+      );
+      content: "";
+      height: 1px;
+      left: 0;
+      opacity: .5;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    .band {
+      background:
+        repeating-linear-gradient(
+          135deg,
+          rgba(6, 182, 212, .025) 0 1px,
+          transparent 1px 9px
+        );
+    }
+
+    /* ---------------------------------------
+       Hero
+    --------------------------------------- */
+
+    .hero {
+      min-height: calc(100svh - 72px);
+      padding-bottom: 80px;
+      padding-top: 105px;
+    }
+
+    .hero-layout {
+      display: grid;
+      gap: 55px;
+      grid-template-columns: repeat(6, 1fr);
+    }
+
+    .hero-copy {
+      grid-column: 1 / span 4;
+    }
+
+    .hero-copy .meta {
+      margin-bottom: 25px;
+    }
+
+    .hero-lede {
+      color: var(--muted-soft);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-top: 28px;
+      max-width: 650px;
+    }
+
+    .actions {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .action {
+      align-items: center;
+      border-radius: 8px;
+      cursor: pointer;
+      display: inline-flex;
+      font: 700 .7rem/1 var(--mono);
+      justify-content: center;
+      letter-spacing: .05em;
+      min-height: 46px;
+      padding: 13px 20px;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition:
+        background var(--ease),
+        border-color var(--ease),
+        box-shadow var(--ease),
+        color var(--ease),
+        transform var(--ease);
+    }
+
+    .action.primary {
+      background: linear-gradient(
+        135deg,
+        var(--green),
+        var(--cyan)
+      );
+      border: 1px solid transparent;
+      box-shadow: 0 0 20px rgba(6, 182, 212, .18);
+      color: var(--bg);
+    }
+
+    .action.primary:hover {
+      box-shadow: 0 0 30px rgba(16, 185, 129, .35);
+      transform: translateY(-2px);
+    }
+
+    .action.secondary {
+      background: rgba(8, 15, 26, .5);
+      border: 1px solid var(--border-strong);
+      color: var(--cyan-hot);
+    }
+
+    .action.secondary:hover {
+      background: rgba(6, 182, 212, .08);
+      border-color: var(--cyan);
+      transform: translateY(-2px);
+    }
+
+    .action.ghost {
+      background: transparent;
+      border: 0;
+      border-bottom: 1px solid var(--cyan);
+      border-radius: 0;
+      color: var(--cyan-hot);
+      min-height: auto;
+      padding: 7px 0;
+    }
+
+    .action.ghost:hover {
+      color: var(--green-hot);
+      transform: translateX(3px);
+    }
+
+    .stats {
+      border-left: 1px solid var(--divider);
+      display: flex;
+      flex-direction: column;
+      grid-column: 5 / span 2;
+      justify-content: flex-end;
+      padding-left: 28px;
+    }
+
+    .stat {
+      border-top: 1px solid var(--divider);
+      padding: 19px 0;
+    }
+
+    .stat strong {
+      color: var(--green-hot);
+      display: block;
+      font: 600 1.55rem/1 var(--mono);
+      text-shadow: 0 0 18px rgba(16, 185, 129, .16);
+    }
+
+    .stat span {
+      color: var(--muted);
+      display: block;
+      font-size: .78rem;
+      line-height: 1.45;
+      margin-top: 8px;
+    }
+
+    /* ---------------------------------------
+       Instrument
+    --------------------------------------- */
+
+    .instrument {
+      border-bottom: 1px solid var(--divider);
+      border-top: 1px solid var(--divider);
+      margin-top: 82px;
+      padding: 27px 0;
+    }
+
+    .instrument-layout {
+      align-items: center;
+      display: grid;
+      gap: 22px;
+      grid-template-columns: 1fr 2fr 1fr;
+    }
+
+    .instrument-label,
+    .instrument-value {
+      color: var(--muted);
+      font: 500 .62rem/1.65 var(--mono);
+      text-transform: uppercase;
+    }
+
+    .instrument-value {
+      color: var(--green-hot);
+      text-align: right;
+    }
+
+    .graphic {
+      aspect-ratio: 2.5 / 1;
+      background:
+        linear-gradient(
+          90deg,
+          transparent 49.5%,
+          rgba(6, 182, 212, .35) 50%,
+          transparent 50.5%
+        ),
+        linear-gradient(
+          0deg,
+          transparent 49.5%,
+          rgba(16, 185, 129, .3) 50%,
+          transparent 50.5%
+        ),
+        linear-gradient(
+          135deg,
+          rgba(6, 182, 212, .08),
+          rgba(16, 185, 129, .025)
+        );
+      background-size: 28px 28px, 28px 28px, auto;
+      border: 1px solid var(--border-strong);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .graphic::before {
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(34, 211, 238, .85),
+          transparent
+        );
+      content: "";
+      height: 1px;
+      left: -20%;
+      position: absolute;
+      top: 50%;
+      transform: rotate(-7deg);
+      width: 140%;
+    }
+
+    .graphic::after {
+      background:
+        radial-gradient(
+          circle at 28% 64%,
+          var(--green) 0 3px,
+          transparent 4px
+        ),
+        radial-gradient(
+          circle at 53% 42%,
+          var(--cyan-hot) 0 3px,
+          transparent 4px
+        ),
+        radial-gradient(
+          circle at 75% 57%,
+          var(--green-hot) 0 3px,
+          transparent 4px
+        );
+      content: "";
+      inset: 0;
+      position: absolute;
+    }
+
+    /* ---------------------------------------
+       Section headers
+    --------------------------------------- */
+
+    .section-head {
+      align-items: end;
+      display: grid;
+      gap: 45px;
+      grid-template-columns: 1fr 1fr;
+      margin-bottom: 62px;
+    }
+
+    .section-head .meta {
+      margin-bottom: 18px;
+    }
+
+    .section-head p:not(.meta) {
+      color: var(--muted-soft);
+      font-size: .95rem;
+      line-height: 1.7;
+      max-width: 470px;
+    }
+
+    /* ---------------------------------------
+       Grid items
+    --------------------------------------- */
+
+    .items {
+      display: grid;
+    }
+
+    .items.three {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .items.four {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .item {
+      border-left: 1px solid var(--divider);
+      min-height: 260px;
+      padding: 0 25px;
+      position: relative;
+    }
+
+    .item:last-child {
+      border-right: 1px solid var(--divider);
+    }
+
+    .item::before {
+      background: linear-gradient(
+        90deg,
+        var(--green),
+        transparent
+      );
+      content: "";
+      height: 1px;
+      left: 25px;
+      opacity: .25;
+      position: absolute;
+      right: 25px;
+      top: 0;
+    }
+
+    .item .meta {
+      color: var(--muted);
+      margin-top: 1px;
+    }
+
+    .item .meta::before {
+      background: var(--cyan);
+      box-shadow: 0 0 7px rgba(6, 182, 212, .65);
+    }
+
+    .item h3 {
+      margin-top: 70px;
+    }
+
+    .item p {
+      color: var(--muted);
+      font-size: .88rem;
+      line-height: 1.65;
+      margin-top: 13px;
+      max-width: 310px;
+    }
+
+    /* ---------------------------------------
+       Platform
+    --------------------------------------- */
+
+    .platform-intro .meta,
+    .comparison-copy .meta,
+    .opportunity-copy .meta,
+    .nda-intro .meta,
+    .form-head .meta,
+    .legal-copy .meta {
+      margin-bottom: 18px;
+    }
+
+    .platform-intro p:not(.meta),
+    .comparison-copy p:not(.meta),
+    .opportunity-copy p:not(.meta),
+    .nda-intro p:not(.meta),
+    .form-head p:not(.meta) {
+      color: var(--muted-soft);
+      font-size: .92rem;
+      line-height: 1.7;
+    }
+
+    .platform-intro p:not(.meta),
+    .comparison-copy p:not(.meta),
+    .nda-intro p:not(.meta) {
+      margin-top: 20px;
+    }
+
+    .platform {
+      display: grid;
+      gap: 0;
+      grid-template-columns: repeat(6, 1fr);
+    }
+
+    .platform-intro {
+      grid-column: 1 / span 2;
+      padding-right: 35px;
+    }
+
+    .list {
+      grid-column: 3 / span 4;
+    }
+
+    .row {
+      align-items: center;
+      border-bottom: 1px solid var(--divider);
+      border-top: 1px solid transparent;
+      display: grid;
+      gap: 25px;
+      grid-template-columns: 1fr 1.5fr;
+      min-height: 84px;
+      padding: 8px 0;
+      transition:
+        background var(--ease),
+        border-color var(--ease);
+    }
+
+    .row:first-child {
+      border-top-color: var(--divider);
+    }
+
+    .row:hover {
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(6, 182, 212, .035)
+      );
+    }
+
+    .row span {
+      color: var(--muted);
+      font: 500 .64rem/1.5 var(--mono);
+      text-transform: uppercase;
+    }
+
+    .row strong {
+      color: var(--text-soft);
+      font-size: .92rem;
+      font-weight: 500;
+      line-height: 1.45;
+    }
+
+    /* ---------------------------------------
+       Table
+    --------------------------------------- */
+
+    .comparison {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+    }
+
+    .comparison-copy {
+      grid-column: 1 / span 2;
+      padding-right: 35px;
+    }
+
+    .table {
+      grid-column: 3 / span 4;
+      overflow-x: auto;
+    }
+
+    table {
+      border-collapse: collapse;
+      min-width: 560px;
+      width: 100%;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid var(--divider);
+      padding: 18px 14px;
+      text-align: left;
+    }
+
+    th {
+      color: var(--muted);
+      font: 600 .62rem/1.4 var(--mono);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    td {
+      color: var(--muted-soft);
+      font-size: .84rem;
+    }
+
+    td:first-child {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .positive {
+      color: var(--green-hot);
+      font-family: var(--mono);
+    }
+
+    /* ---------------------------------------
+       Quote
+    --------------------------------------- */
+
+    .quote {
+      border-left: 2px solid var(--green);
+      box-shadow: -12px 0 30px rgba(16, 185, 129, .035);
+      margin: 0 auto;
+      max-width: 900px;
+      padding: 5px 0 5px 30px;
+    }
+
+    blockquote {
+      color: var(--text);
+      font-size: clamp(1.55rem, 3vw, 2.5rem);
+      font-weight: 500;
+      letter-spacing: -.035em;
+      line-height: 1.15;
+    }
+
+    .quote cite {
+      color: var(--muted);
+      display: block;
+      font: 500 .65rem/1.5 var(--mono);
+      margin-top: 23px;
+      text-transform: uppercase;
+    }
+
+    /* ---------------------------------------
+       Opportunity
+    --------------------------------------- */
+
+    .opportunity {
+      background:
+        radial-gradient(
+          circle at 15% 50%,
+          rgba(16, 185, 129, .055),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 85% 50%,
+          rgba(6, 182, 212, .055),
+          transparent 30%
+        );
+    }
+
+    .opportunity-layout {
+      align-items: end;
+      display: grid;
+      gap: 35px;
+      grid-template-columns: repeat(6, 1fr);
+    }
+
+    .opportunity-copy {
+      grid-column: 1 / span 4;
+    }
+
+    .opportunity-copy p:not(.meta) {
+      margin-top: 19px;
+      max-width: 650px;
+    }
+
+    .opportunity-action {
+      grid-column: 5 / span 2;
+      justify-self: end;
+    }
+
+    /* ---------------------------------------
+       NDA
+    --------------------------------------- */
+
+    .nda {
+      display: grid;
+      gap: 55px;
+      grid-template-columns: 2fr 4fr;
+    }
+
+    .nda-intro {
+      padding-right: 25px;
+    }
+
+    .nda-intro p:not(.meta) {
+      max-width: 390px;
+    }
+
+    .points {
+      border-top: 1px solid var(--divider);
+    }
+
+    .point {
+      border-bottom: 1px solid var(--divider);
+      display: grid;
+      gap: 25px;
+      grid-template-columns: 1fr 2fr;
+      padding: 20px 0;
+    }
+
+    .point span {
+      color: var(--cyan);
+      font: 600 .62rem/1.5 var(--mono);
+      text-transform: uppercase;
+    }
+
+    .point strong {
+      color: var(--text-soft);
+      font-size: .9rem;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    /* ---------------------------------------
+       Form
+    --------------------------------------- */
+
+    .form-area {
+      border-top: 1px solid var(--divider);
+      margin-top: 70px;
+      padding-top: 48px;
+    }
+
+    .form-head {
+      display: grid;
+      gap: 35px;
+      grid-template-columns: 1fr 1fr;
+      margin-bottom: 38px;
+    }
+
+    .form-head p:not(.meta) {
+      max-width: 450px;
+    }
+
+    .form {
+      display: grid;
+      gap: 22px;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .field label {
+      color: var(--muted);
+      font: 600 .62rem/1.4 var(--mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      appearance: none;
+      background: rgba(4, 8, 14, .78);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font: 400 .9rem/1.5 var(--geist);
+      outline: none;
+      padding: 13px 14px;
+      transition:
+        border-color var(--ease),
+        box-shadow var(--ease),
+        background var(--ease);
+      width: 100%;
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: #475569;
+    }
+
+    .field input:hover,
+    .field select:hover,
+    .field textarea:hover {
+      border-color: rgba(6, 182, 212, .35);
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      background: rgba(4, 8, 14, .95);
+      border-color: var(--green);
+      box-shadow: 0 0 16px rgba(16, 185, 129, .12);
+    }
+
+    .field select {
+      background-image:
+        linear-gradient(45deg, transparent 50%, var(--cyan) 50%),
+        linear-gradient(135deg, var(--cyan) 50%, transparent 50%);
+      background-position:
+        calc(100% - 18px) 50%,
+        calc(100% - 13px) 50%;
+      background-repeat: no-repeat;
+      background-size: 5px 5px, 5px 5px;
+      padding-right: 35px;
+    }
+
+    .field select option {
+      background: var(--bg-soft);
+      color: var(--text);
+    }
+
+    .field textarea {
+      min-height: 145px;
+      resize: vertical;
+    }
+
+    .check {
+      align-items: flex-start;
+      display: flex;
+      gap: 11px;
+      grid-column: 1 / -1;
+      margin-top: 3px;
+    }
+
+    .check input {
+      accent-color: var(--green);
+      flex: 0 0 auto;
+      margin-top: 4px;
+    }
+
+    .check label {
+      color: var(--muted);
+      font-size: .78rem;
+      line-height: 1.6;
+    }
+
+    .submit {
+      grid-column: 1 / -1;
+      margin-top: 4px;
+    }
+
+    .note {
+      color: var(--muted);
+      font: 400 .62rem/1.6 var(--mono);
+      margin-top: 15px;
+      max-width: 700px;
+    }
+
+    /* ---------------------------------------
+       Contact
+    --------------------------------------- */
+
+    .contacts {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .contact {
+      border-left: 1px solid var(--divider);
+      min-height: 250px;
+      padding: 0 28px;
+    }
+
+    .contact:last-child {
+      border-right: 1px solid var(--divider);
+    }
+
+    .contact-role {
+      color: var(--cyan);
+      display: block;
+      font: 600 .62rem/1.4 var(--mono);
+      text-transform: uppercase;
+    }
+
+    .contact h3 {
+      margin-top: 55px;
+    }
+
+    .contact p {
+      color: var(--muted);
+      font-size: .86rem;
+      line-height: 1.7;
+      margin-top: 14px;
+    }
+
+    .contact .address {
+      color: var(--text-soft);
+    }
+
+    /* ---------------------------------------
+       Legal
+    --------------------------------------- */
+
+    .legal {
+      background:
+        linear-gradient(
+          180deg,
+          rgba(8, 15, 26, .38),
+          rgba(4, 8, 14, .1)
+        );
+    }
+
+    .legal-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+    }
+
+    .legal-copy {
+      grid-column: 1 / span 4;
+    }
+
+    .legal-copy p:not(.meta) {
+      color: var(--muted);
+      font-size: .84rem;
+      line-height: 1.7;
+      margin-top: 18px;
+      max-width: 680px;
+    }
+
+    /* ---------------------------------------
+       Footer
+    --------------------------------------- */
+
+    .footer {
+      padding: 34px 0 50px;
+    }
+
+    .footer-inner {
+      color: var(--muted);
+      display: flex;
+      font: 500 .61rem/1.6 var(--mono);
+      justify-content: space-between;
+      text-transform: uppercase;
+    }
+
+    /* ---------------------------------------
+       Toast
+    --------------------------------------- */
+
+    .toast {
+      background: rgba(4, 8, 14, .94);
+      border: 1px solid var(--border-strong);
+      box-shadow:
+        0 0 30px rgba(6, 182, 212, .15),
+        inset 0 0 15px rgba(16, 185, 129, .03);
+      color: var(--text);
+      display: none;
+      font: 600 .65rem/1.4 var(--mono);
+      max-width: calc(100vw - 40px);
+      padding: 13px 17px;
+      position: fixed;
+      right: 20px;
+      top: 88px;
+      z-index: 30;
+    }
+
+    .toast::before {
+      background: var(--green);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--green);
+      content: "";
+      display: inline-block;
+      height: 6px;
+      margin-right: 9px;
+      width: 6px;
+    }
+
+    .toast.visible {
+      display: block;
+    }
+
+    /* ---------------------------------------
+       Accessibility
+    --------------------------------------- */
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+      outline: 2px solid var(--green);
+      outline-offset: 3px;
+    }
+
+    /* ---------------------------------------
+       Tablet
+    --------------------------------------- */
+
+    @media (max-width: 900px) {
+      .nav-links,
+      .language-switcher {
+        display: none;
+      }
+
+      .hero-layout,
+      .section-head,
+      .platform,
+      .comparison,
+      .opportunity-layout,
+      .legal-grid,
+      .nda,
+      .form-head {
+        grid-template-columns: repeat(6, 1fr);
+      }
+
+      .hero-copy,
+      .platform-intro,
+      .comparison-copy,
+      .opportunity-copy,
+      .legal-copy,
+      .nda-intro {
+        grid-column: 1 / -1;
+      }
+
+      .stats {
+        border-left: 0;
+        border-top: 1px solid var(--divider);
+        grid-column: 1 / -1;
+        padding-left: 0;
+        padding-top: 18px;
+      }
+
+      .list,
+      .table {
+        grid-column: 1 / -1;
+        margin-top: 45px;
+      }
+
+      .opportunity-action {
+        grid-column: 1 / -1;
+        justify-self: start;
+      }
+
+      .platform-intro,
+      .comparison-copy,
+      .nda-intro {
+        padding-right: 0;
+      }
+
+      .form-area {
+        margin-top: 55px;
+      }
+
+      .contacts {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .items.four {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .items.four .item {
+        border-bottom: 1px solid var(--divider);
+        padding: 23px 0;
+      }
+
+      .items.four .item:nth-child(2) {
+        border-right: 1px solid var(--divider);
+      }
+
+      .items.four .item:nth-child(3),
+      .items.four .item:nth-child(4) {
+        border-bottom: 0;
+      }
+
+      .items.four .item h3 {
+        margin-top: 25px;
+      }
+    }
+
+    /* ---------------------------------------
+       Mobile
+    --------------------------------------- */
+
+    @media (max-width: 620px) {
+      .content {
+        padding: 0 18px;
+      }
+
+      .columns {
+        display: none;
+      }
+
+      .grid {
+        background-size: 35px 35px;
+      }
+
+      .orb.green {
+        filter: blur(90px);
+        height: 250px;
+        left: -110px;
+        opacity: .055;
+        width: 250px;
+      }
+
+      .orb.cyan {
+        bottom: 5%;
+        filter: blur(100px);
+        height: 280px;
+        opacity: .055;
+        right: -120px;
+        width: 280px;
+      }
+
+      .nav-inner {
+        height: 62px;
+      }
+
+      .brand {
+        font-size: 12px;
+      }
+
+      .section {
+        padding: 78px 0;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-bottom: 75px;
+        padding-top: 75px;
+      }
+
+      h1 {
+        font-size: clamp(2.2rem, 11vw, 3.3rem);
+      }
+
+      h2 {
+        font-size: clamp(1.95rem, 9vw, 2.8rem);
+      }
+
+      .hero-lede {
+        font-size: .88rem;
+        line-height: 1.65;
+        margin-top: 22px;
+      }
+
+      .actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .action {
+        width: 100%;
+      }
+
+      .stats {
+        display: grid;
+        gap: 0 16px;
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stat {
+        padding: 17px 0;
+      }
+
+      .stat:last-child {
+        grid-column: 1 / -1;
+      }
+
+      .instrument {
+        margin-top: 62px;
+      }
+
+      .instrument-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .instrument-value {
+        text-align: left;
+      }
+
+      .graphic {
+        order: 2;
+      }
+
+      .instrument-value {
+        order: 3;
+      }
+
+      .section-head,
+      .platform,
+      .comparison,
+      .opportunity-layout,
+      .nda,
+      .form-head,
+      .form {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        gap: 25px;
+        margin-bottom: 45px;
+      }
+
+      .platform-intro,
+      .comparison-copy,
+      .opportunity-copy,
+      .legal-copy,
+      .nda-intro,
+      .hero-copy {
+        grid-column: 1;
+      }
+
+      .list,
+      .table {
+        grid-column: 1;
+        margin-top: 40px;
+      }
+
+      .row {
+        gap: 14px;
+        grid-template-columns: 1fr 1.25fr;
+        min-height: 88px;
+      }
+
+      .row span {
+        font-size: .58rem;
+      }
+
+      .row strong {
+        font-size: .82rem;
+      }
+
+      .items.three,
+      .items.four {
+        grid-template-columns: 1fr;
+      }
+
+      .item,
+      .item:last-child {
+        border-bottom: 1px solid var(--divider);
+        border-left: 0;
+        border-right: 0;
+        min-height: 0;
+        padding: 23px 0;
+      }
+
+      .item::before {
+        left: 0;
+        right: 0;
+      }
+
+      .item h3,
+      .items.four .item h3 {
+        margin-top: 28px;
+      }
+
+      .item:last-child {
+        border-bottom: 0;
+      }
+
+      .items.four .item:nth-child(2),
+      .items.four .item:nth-child(3),
+      .items.four .item:nth-child(4) {
+        border-right: 0;
+      }
+
+      .items.four .item {
+        padding-bottom: 23px;
+        padding-top: 23px;
+      }
+
+      .opportunity-action {
+        grid-column: 1;
+        justify-self: stretch;
+        margin-top: 12px;
+      }
+
+      .nda {
+        gap: 42px;
+      }
+
+      .point {
+        gap: 9px;
+        grid-template-columns: 1fr;
+        padding: 19px 0;
+      }
+
+      .form-area {
+        margin-top: 48px;
+        padding-top: 38px;
+      }
+
+      .form-head {
+        gap: 22px;
+        margin-bottom: 30px;
+      }
+
+      .field,
+      .field.full,
+      .check,
+      .submit {
+        grid-column: 1;
+      }
+
+      .field input,
+      .field select,
+      .field textarea {
+        font-size: 16px;
+      }
+
+      .contacts {
+        grid-template-columns: 1fr;
+      }
+
+      .contact,
+      .contact:last-child {
+        border-bottom: 1px solid var(--divider);
+        border-left: 0;
+        border-right: 0;
+        min-height: 0;
+        padding: 25px 0;
+      }
+
+      .contact:last-child {
+        border-bottom: 0;
+      }
+
+      .contact h3 {
+        margin-top: 24px;
+      }
+
+      .legal-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .legal-copy {
+        grid-column: 1;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        gap: 9px;
+      }
+
+      .quote {
+        padding-left: 19px;
+      }
+
+      blockquote {
+        font-size: 1.55rem;
+      }
+
+      .toast {
+        left: 15px;
+        right: 15px;
+        top: 77px;
+      }
+    }
+
+    /* ---------------------------------------
+       Very small screens
+    --------------------------------------- */
+
+    @media (max-width: 380px) {
+      .content {
+        padding: 0 15px;
+      }
+
+      .brand {
+        font-size: 11px;
+      }
+
+      h1 {
+        font-size: 2.05rem;
+      }
+
+      h2 {
+        font-size: 1.85rem;
+      }
+
+      .meta {
+        font-size: .58rem;
+        letter-spacing: .12em;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .stat:last-child {
+        grid-column: auto;
+      }
+
+      .row {
+        grid-template-columns: 1fr;
+        gap: 5px;
+        padding: 17px 0;
+      }
+    }
+
+    /* ---------------------------------------
+       Reduced motion
+    --------------------------------------- */
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      html {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="backdrop" aria-hidden="true">
+    <div class="grid"></div>
+
+    <div class="columns">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <div class="orb green"></div>
+    <div class="orb cyan"></div>
+  </div>
+
+
+  <div class="page" id="top">
+
+    <!-- Navigation -->
+    <header class="nav">
+
+      <div class="content nav-inner">
+
+        <a class="brand" href="#top">
+          <span class="brand-mark" aria-hidden="true"></span>
+          Gaia Matrix Technologies
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#vision">Vision</a></li>
+          <li><a href="#technologies">Technologien</a></li>
+          <li><a href="#independence">Energieunabhängigkeit</a></li>
+          <li><a href="#nda">Technische Evidenz</a></li>
+          <li><a href="#contact">Kontakt</a></li>
+        </ul>
+
+        <nav class="language-switcher" aria-label="Sprache auswählen">
+          <a href="index7b-en.html" hreflang="en" lang="en">EN</a>
+          <span aria-hidden="true">/</span>
+          <a href="index7b.html" aria-current="page" hreflang="de" lang="de">DE</a>
+        </nav>
+
+      </div>
+
+    </header>
+
+
+    <main>
+
+      <!-- Hero -->
+      <section class="section hero" id="vision">
+
+        <div class="content">
+
+          <div class="hero-layout">
+
+            <div class="hero-copy">
+
+              <p class="meta">
+                Gaia Matrix Technologies / 01
+              </p>
+
+              <h1>
+                Um Zukunft zu gestalten, muss man eine klare Vorstellung davon haben.
+                Diese haben wir.
+              </h1>
+
+              <p class="hero-lede">
+                Vor dem Hintergrund geopolitischer Entwicklungen und wachsender
+                Umweltprobleme brauchen wir mehr denn je eine umweltfreundliche,
+                nachhaltige, resiliente und CO₂-arme Energieversorgung auf Basis
+                erneuerbarer Energien.
+              </p>
+
+              <div class="actions">
+
+                <a class="action primary" href="#technologies">
+                  Unsere Technologien
+                </a>
+
+                <a class="action ghost" href="#nda">
+                  Technische Evidenz →
+                </a>
+
+              </div>
+
+            </div>
+
+
+            <div class="stats">
+
+              <div class="stat">
+                <strong>2050</strong>
+                <span>
+                  Europa strebt Klimaneutralität an
+                </span>
+              </div>
+
+              <div class="stat">
+                <strong>04</strong>
+                <span>
+                  Technologiebereiche: Photovoltaik, Licht, Heizung und Speicherung
+                </span>
+              </div>
+
+              <div class="stat">
+                <strong>100%</strong>
+                <span>
+                  recycelbare Ausrichtung unserer Produkte
+                </span>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="instrument">
+
+            <div class="instrument-layout">
+
+              <span class="instrument-label">
+                Gaia Matrix Technologies<br>
+                Nanotechnologie / Energie / Zukunft
+              </span>
+
+              <div
+                class="graphic"
+                aria-label="Abstrakte Darstellung eines nanotechnologischen Energiesystems"
+                role="img">
+              </div>
+
+              <span class="instrument-value">
+                Nachhaltig<br>
+                dezentral<br>
+                autark
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Vision -->
+      <section class="section band">
+
+        <div class="content">
+
+          <div class="section-head">
+
+            <div>
+
+              <p class="meta">
+                Unsere Vision / 02
+              </p>
+
+              <h2>
+                Die Ära einer neuen grünen Form der Energiegewinnung.
+              </h2>
+
+            </div>
+
+            <p>
+              Basierend auf neuesten nanotechnologischen Erkenntnissen und
+              Verfahren entwickelt Gaia Matrix Technologies Systeme, die
+              Energiegewinnung und Energieversorgung neu denken.
+              Weiterführende technische Unterlagen und Nachweise können
+              interessierten Parteien im Rahmen eines NDA zur Verfügung
+              gestellt werden.
+            </p>
+
+          </div>
+
+
+          <div class="items three">
+
+            <article class="item">
+
+              <span class="meta">
+                01 / Nachhaltigkeit
+              </span>
+
+              <h3>
+                Energie mit Verantwortung.
+              </h3>
+
+              <p>
+                Unsere Systeme sind auf Nachhaltigkeit, Umweltfreundlichkeit,
+                Langlebigkeit, Effizienz und einen geringen CO₂-Ausstoß ausgerichtet.
+              </p>
+
+            </article>
+
+
+            <article class="item">
+
+              <span class="meta">
+                02 / Technologie
+              </span>
+
+              <h3>
+                Gedruckte Nanotechnologie.
+              </h3>
+
+              <p>
+                Patentierte und zertifizierte Systeme verbinden moderne
+                Nanotechnologie mit einem klaren und skalierbaren Ansatz für
+                die Energiegewinnung. Technische Details werden auf Anfrage
+                im geschützten Rahmen vertieft.
+              </p>
+
+            </article>
+
+
+            <article class="item">
+
+              <span class="meta">
+                03 / Unabhängigkeit
+              </span>
+
+              <h3>
+                Energie dort, wo sie gebraucht wird.
+              </h3>
+
+              <p>
+                Dezentrale und autarke Energiesysteme schaffen neue Möglichkeiten
+                für Gebäude, Infrastruktur und unseren Alltag.
+              </p>
+
+            </article>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Technologies -->
+      <section class="section" id="technologies">
+
+        <div class="content">
+
+          <div class="platform">
+
+            <div class="platform-intro">
+
+              <p class="meta">
+                Technologien / 03
+              </p>
+
+              <h2>
+                Vier Bereiche. Eine gemeinsame Vision.
+              </h2>
+
+              <p>
+                Die von Gaia Matrix Technologies verwendete Nanotechnologie
+                eröffnet neue Möglichkeiten in unterschiedlichen Bereichen
+                der Energiegewinnung und Energieversorgung.
+              </p>
+
+              <p>
+                Detaillierte technische Spezifikationen, Prüfunterlagen und
+                weitere Evidenz werden qualifizierten Interessenten im Rahmen
+                eines NDA zugänglich gemacht.
+              </p>
+
+            </div>
+
+
+            <div class="list">
+
+              <div class="row">
+                <span>01 / Photovoltaik</span>
+                <strong>
+                  Gedruckte Systeme zur Erzeugung elektrischer Energie
+                </strong>
+              </div>
+
+              <div class="row">
+                <span>02 / Leuchttechnologie</span>
+                <strong>
+                  Nanotechnologische Lösungen für eine neue Form der Beleuchtung
+                </strong>
+              </div>
+
+              <div class="row">
+                <span>03 / Heizung</span>
+                <strong>
+                  Effiziente Systeme für eine nachhaltige Wärmeversorgung
+                </strong>
+              </div>
+
+              <div class="row">
+                <span>04 / Energiespeicherung</span>
+                <strong>
+                  Technologien für Speicherung und Nutzung selbst erzeugter Energie
+                </strong>
+              </div>
+
+              <div class="row">
+                <span>Materialien</span>
+                <strong>
+                  Ohne kritische oder seltene Erden
+                </strong>
+              </div>
+
+              <div class="row">
+                <span>Produktansatz</span>
+                <strong>
+                  Langlebig, schadstofffrei und vollständig recycelbar
+                </strong>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Applications -->
+      <section class="section" id="applications">
+
+        <div class="content">
+
+          <div class="section-head">
+
+            <div>
+
+              <p class="meta">
+                Anwendungen / 04
+              </p>
+
+              <h2>
+                Energie wird Teil unserer Umgebung.
+              </h2>
+
+            </div>
+
+            <p>
+              Unsere Energiesysteme können dazu beitragen, Gebäude,
+              Infrastruktur und die Art, wie wir wohnen und arbeiten,
+              nachhaltig zu verändern.
+            </p>
+
+          </div>
+
+
+          <div class="items four">
+
+            <article class="item">
+
+              <span class="meta">
+                A / Gebäude
+              </span>
+
+              <h3>
+                Autarke Häuser
+              </h3>
+
+              <p>
+                Photovoltaik und Energiespeicherung ermöglichen Gebäude,
+                die ihren Energiebedarf weitgehend eigenständig decken können.
+              </p>
+
+            </article>
+
+
+            <article class="item">
+
+              <span class="meta">
+                B / Gewerbe
+              </span>
+
+              <h3>
+                Gewerbliche Systeme
+              </h3>
+
+              <p>
+                Dezentrale Energieversorgung für Unternehmen und gewerbliche
+                Gebäude mit Fokus auf Effizienz und langfristige Kostenreduktion.
+              </p>
+
+            </article>
+
+
+            <article class="item">
+
+              <span class="meta">
+                C / Infrastruktur
+              </span>
+
+              <h3>
+                Dezentrale Energie
+              </h3>
+
+              <p>
+                Energieversorgung wird unabhängiger von zentralen Strukturen
+                und damit resilienter gegenüber Krisen und Engpässen.
+              </p>
+
+            </article>
+
+
+            <article class="item">
+
+              <span class="meta">
+                D / Alltag
+              </span>
+
+              <h3>
+                Neue Lebensräume
+              </h3>
+
+              <p>
+                Unsere Produkte sollen ihren Einsatz dort finden, wo wir
+                leben, arbeiten und Energie täglich benötigen.
+              </p>
+
+            </article>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Independence -->
+      <section class="section" id="independence">
+
+        <div class="content">
+
+          <div class="comparison">
+
+            <div class="comparison-copy">
+
+              <p class="meta">
+                Energieunabhängigkeit / 05
+              </p>
+
+              <h2>
+                Strategische Souveränität beginnt bei der Energie.
+              </h2>
+
+              <p>
+                Die dezentralisierte, autarke Energieversorgung steht in
+                unserem Fokus. Sie bedeutet strategische Souveränität und
+                zugleich Unabhängigkeit von herkömmlicher Energieversorgung
+                durch Gas, Öl oder Kohle.
+              </p>
+
+              <p>
+                Eine resiliente Energieinfrastruktur kann dazu beitragen,
+                dass Energie in Krisensituationen nicht länger als strategisches
+                Druckmittel eingesetzt werden kann.
+              </p>
+
+              <p>
+                Technische Nachweise und weiterführende Unterlagen zur
+                Leistungsfähigkeit der Systeme können nach entsprechender
+                Qualifizierung und unter NDA eingesehen werden.
+              </p>
+
+            </div>
+
+
+            <div class="table">
+
+              <table>
+
+                <thead>
+                  <tr>
+                    <th>Dimension</th>
+                    <th>Unser Ansatz</th>
+                    <th>Ziel</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+
+                  <tr>
+                    <td>Versorgung</td>
+                    <td class="positive">
+                      Dezentral und autark
+                    </td>
+                    <td>
+                      Höhere Resilienz
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Energiequellen</td>
+                    <td class="positive">
+                      Erneuerbare Energien
+                    </td>
+                    <td>
+                      Weniger fossile Abhängigkeit
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Materialien</td>
+                    <td class="positive">
+                      Ohne kritische oder seltene Erden
+                    </td>
+                    <td>
+                      Nachhaltigere Produktion
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Lebensdauer</td>
+                    <td class="positive">
+                      Langlebige Systeme
+                    </td>
+                    <td>
+                      Nachhaltige Nutzung
+                    </td>
+                  </tr>
+
+                </tbody>
+
+              </table>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Quote -->
+      <section class="section">
+
+        <div class="content">
+
+          <div class="quote">
+
+            <blockquote>
+              „Unsere Umwelt, unsere Infrastruktur, unsere Häuser sowie unsere
+              Form des Wohnens werden sich durch diese Energiesysteme positiv verändern.“
+            </blockquote>
+
+            <cite>
+              Gaia Matrix Technologies AG / Zukunftsvision
+            </cite>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Sustainability -->
+      <section class="section band">
+
+        <div class="content">
+
+          <div class="section-head">
+
+            <div>
+
+              <p class="meta">
+                Material &amp; Effizienz / 06
+              </p>
+
+              <h2>
+                Nachhaltigkeit beginnt bei den Materialien.
+              </h2>
+
+            </div>
+
+            <p>
+              Unsere Produkte kommen ohne kritische oder seltene Erden aus.
+              Sie sind frei von Giftstoffen, langlebig, preiswert und auf
+              einen geringen CO₂-Ausstoß sowie vollständige Recyclingfähigkeit
+              ausgerichtet.
+            </p>
+
+          </div>
+
+
+          <div class="items three">
+
+            <article class="item">
+
+              <span class="meta">
+                01 / Ressourcen
+              </span>
+
+              <h3>
+                Keine kritischen Erden.
+              </h3>
+
+              <p>
+                Für die Herstellung unserer Produkte werden weder kritische
+                noch seltene Erden eingesetzt.
+              </p>
+
+            </article>
+
+
+            <article class="item">
+
+              <span class="meta">
+                02 / Kreislauf
+              </span>
+
+              <h3>
+                Recycelbar.
+              </h3>
+
+              <p>
+                Unsere Systeme sind vollständig recycelbar und damit auf
+                einen nachhaltigeren Produktlebenszyklus ausgerichtet.
+              </p>
+
+            </article>
+
+
+            <article class="item">
+
+              <span class="meta">
+                03 / Wirtschaftlichkeit
+              </span>
+
+              <h3>
+                Nachhaltig und wirtschaftlich.
+              </h3>
+
+              <p>
+                Die Produkte sind preiswert und auf eine Amortisation des
+                investierten Betrags innerhalb weniger Jahre ausgelegt.
+              </p>
+
+            </article>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Partners -->
+      <section class="section">
+
+        <div class="content">
+
+          <div class="opportunity-layout">
+
+            <div class="opportunity-copy">
+
+              <p class="meta">
+                Netzwerk / 07
+              </p>
+
+              <h2>
+                Gemeinsam die Energiezukunft gestalten.
+              </h2>
+
+              <p>
+                Mit unseren renommierten Partnern aus der Industrie sind wir
+                international vernetzt. Wenn Sie integrativer Teil dieses
+                Netzwerkes werden wollen, können wir gemeinsam die Zukunft
+                unserer und nachfolgender Generationen sichern.
+              </p>
+
+            </div>
+
+            <div class="opportunity-action">
+
+              <a class="action secondary" href="#nda">
+                Technische Unterlagen →
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Future -->
+      <section class="section opportunity">
+
+        <div class="content">
+
+          <div class="opportunity-layout">
+
+            <div class="opportunity-copy">
+
+              <p class="meta">
+                Zukunft / 08
+              </p>
+
+              <h2>
+                Ein Quantensprung.
+              </h2>
+
+              <p>
+                Unsere Nanotechnologie revolutioniert die Welt im Bereich der
+                Energiegewinnung. Der Traum der Unabhängigkeit von fossilen
+                Brennstoffen wird wahr.
+              </p>
+
+              <p>
+                Wir sehen unseren Ansatz als Beginn einer Reise, auf die wir
+                Sie als Kunden und/oder Investoren mitnehmen möchten.
+              </p>
+
+              <p>
+                Zukunftsinvestitionen in Energieunabhängigkeit, Umweltschutz
+                und Sicherheit sind auch und gerade für verantwortungsbewusste
+                Investoren ein richtiger und lukrativer Schritt.
+              </p>
+
+              <p class="text-mono-small">
+                Weiterführende technische Dokumentation und Evidenz sind
+                für qualifizierte Interessenten nach Abschluss eines NDA verfügbar.
+              </p>
+
+            </div>
+
+            <div class="opportunity-action">
+
+              <a class="action primary" href="#nda">
+                Zugang anfragen
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- NDA / Technical Evidence -->
+      <section class="section" id="nda">
+
+        <div class="content">
+
+          <div class="nda">
+
+            <div class="nda-intro">
+
+              <p class="meta">
+                Technische Evidenz / 09
+              </p>
+
+              <h2>
+                Tiefer einsteigen. Unter NDA.
+              </h2>
+
+              <p>
+                Wir stellen interessierten Investoren, Industriepartnern
+                und qualifizierten Kooperationspartnern weiterführende
+                technische Informationen und Nachweise im geschützten Rahmen
+                zur Verfügung.
+              </p>
+
+            </div>
+
+
+            <div class="points">
+
+              <div class="point">
+
+                <span>
+                  01 / Technische Daten
+                </span>
+
+                <strong>
+                  Weiterführende technische Spezifikationen und Produktinformationen
+                  können nach Prüfung der Anfrage bereitgestellt werden.
+                </strong>
+
+              </div>
+
+
+              <div class="point">
+
+                <span>
+                  02 / Nachweise
+                </span>
+
+                <strong>
+                  Verfügbare Test-, Prüf-, Zertifizierungs- und Validierungsunterlagen
+                  können im Rahmen des geschützten Informationsprozesses eingesehen werden.
+                </strong>
+
+              </div>
+
+
+              <div class="point">
+
+                <span>
+                  03 / Geschäftsmodell
+                </span>
+
+                <strong>
+                  Qualifizierte Interessenten können vertiefende Informationen
+                  zu Anwendungen, Partnerschaften und kommerzieller Entwicklung erhalten.
+                </strong>
+
+              </div>
+
+
+              <div class="point">
+
+                <span>
+                  04 / Vertraulichkeit
+                </span>
+
+                <strong>
+                  Der Zugang zu vertraulichen Informationen erfolgt nach
+                  entsprechender Prüfung und, soweit erforderlich, auf Basis
+                  einer Vertraulichkeitsvereinbarung (NDA).
+                </strong>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- Form -->
+          <div class="form-area">
+
+            <div class="form-head">
+
+              <div>
+
+                <p class="meta">
+                  Zugang anfragen
+                </p>
+
+                <h2>
+                  Lassen Sie uns ins Gespräch kommen.
+                </h2>
+
+              </div>
+
+              <p>
+                Bitte teilen Sie uns einige Informationen zu Ihrer Organisation
+                und Ihrem Interesse mit. Wir prüfen Ihre Anfrage und melden uns
+                anschließend persönlich bei Ihnen.
+              </p>
+
+            </div>
+
+
+            <form
+              class="form"
+              id="investor-form"
+              action="#"
+              method="POST"
+            >
+
+              <div class="field">
+
+                <label for="name">
+                  Name *
+                </label>
+
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  autocomplete="name"
+                  required
+                >
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="company">
+                  Unternehmen / Organisation *
+                </label>
+
+                <input
+                  id="company"
+                  name="company"
+                  type="text"
+                  autocomplete="organization"
+                  required
+                >
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="email">
+                  E-Mail *
+                </label>
+
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  required
+                >
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="country">
+                  Land
+                </label>
+
+                <input
+                  id="country"
+                  name="country"
+                  type="text"
+                  autocomplete="country-name"
+                >
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="type">
+                  Organisationstyp *
+                </label>
+
+                <select
+                  id="type"
+                  name="organisation_type"
+                  required
+                >
+                  <option value="" selected disabled>
+                    Bitte auswählen
+                  </option>
+                  <option value="private-investor">
+                    Privatinvestor
+                  </option>
+                  <option value="institutional-investor">
+                    Institutioneller Investor
+                  </option>
+                  <option value="family-office">
+                    Family Office
+                  </option>
+                  <option value="corporate">
+                    Unternehmen / Industrie
+                  </option>
+                  <option value="technology-partner">
+                    Technologiepartner
+                  </option>
+                  <option value="other">
+                    Sonstige
+                  </option>
+                </select>
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="interest">
+                  Interessensbereich *
+                </label>
+
+                <select
+                  id="interest"
+                  name="interest"
+                  required
+                >
+                  <option value="" selected disabled>
+                    Bitte auswählen
+                  </option>
+                  <option value="investment">
+                    Investment
+                  </option>
+                  <option value="photovoltaics">
+                    Photovoltaik
+                  </option>
+                  <option value="lighting">
+                    Leuchttechnologie
+                  </option>
+                  <option value="heating">
+                    Heizung
+                  </option>
+                  <option value="energy-storage">
+                    Energiespeicherung
+                  </option>
+                  <option value="industrial-partnership">
+                    Industriepartnerschaft
+                  </option>
+                  <option value="commercialisation">
+                    Kommerzialisierung
+                  </option>
+                </select>
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="investment">
+                  Investitions- / Kooperationsinteresse
+                </label>
+
+                <select
+                  id="investment"
+                  name="investment_interest"
+                >
+                  <option value="" selected>
+                    Bitte auswählen
+                  </option>
+                  <option value="exploring">
+                    Erste Orientierung
+                  </option>
+                  <option value="serious-interest">
+                    Konkretes Interesse
+                  </option>
+                  <option value="strategic-partnership">
+                    Strategische Partnerschaft
+                  </option>
+                  <option value="investment">
+                    Investitionsgespräch
+                  </option>
+                  <option value="commercial-partnership">
+                    Kommerzielle Zusammenarbeit
+                  </option>
+                </select>
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="website">
+                  Website
+                </label>
+
+                <input
+                  id="website"
+                  name="website"
+                  type="url"
+                  autocomplete="url"
+                  placeholder="https://"
+                >
+
+              </div>
+
+
+              <div class="field full">
+
+                <label for="message">
+                  Nachricht
+                </label>
+
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="Beschreiben Sie kurz Ihr Interesse oder Ihre geplante Zusammenarbeit."
+                ></textarea>
+
+              </div>
+
+
+              <div class="check">
+
+                <input
+                  id="nda-consent"
+                  name="nda_interest"
+                  type="checkbox"
+                  value="yes"
+                  required
+                >
+
+                <label for="nda-consent">
+                  Ich möchte Informationen zu den verfügbaren technischen
+                  Unterlagen und Nachweisen erhalten und verstehe, dass
+                  vertrauliche Informationen gegebenenfalls erst nach
+                  Abschluss einer NDA bereitgestellt werden.
+                </label>
+
+              </div>
+
+
+              <div class="submit">
+
+                <button
+                  class="action primary"
+                  type="submit"
+                >
+                  Anfrage senden
+                </button>
+
+                <p class="note">
+                  Ihre Angaben werden zur Bearbeitung Ihrer Anfrage verwendet.
+                  Bitte ergänzen Sie vor dem Livegang einen Link zu Ihrer
+                  Datenschutzerklärung und passen Sie diesen Hinweis an Ihre
+                  tatsächliche Datenverarbeitung an.
+                </p>
+
+              </div>
+
+            </form>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Contact -->
+      <section class="section" id="contact">
+
+        <div class="content">
+
+          <div class="section-head">
+
+            <div>
+
+              <p class="meta">
+                Kontakt / 10
+              </p>
+
+              <h2>
+                Die Richtung ist klar und steht fest.
+              </h2>
+
+            </div>
+
+            <p>
+              Wenn Sie Kunde, Investor oder integrativer Teil unseres
+              internationalen Netzwerks werden möchten, freuen wir uns
+              auf Ihre Kontaktaufnahme.
+            </p>
+
+          </div>
+
+
+          <div class="contacts">
+
+            <article class="contact">
+
+              <span class="contact-role">
+                CEO und Co-Gründerin
+              </span>
+
+              <h3>
+                Gerlinde Jacobs
+              </h3>
+
+              <p class="address">
+                GMT Gaia Matrix Technologies AG<br>
+                Max-Högger-Strasse 6<br>
+                8048 Zürich<br>
+                Schweiz
+              </p>
+
+            </article>
+
+
+            <article class="contact">
+
+              <span class="contact-role">
+                CEO und Co-Gründer
+              </span>
+
+              <h3>
+                Michael Brüssow
+              </h3>
+
+              <p class="address">
+                GMT Gaia Matrix Technologies AG<br>
+                Max-Högger-Strasse 6<br>
+                8048 Zürich<br>
+                Schweiz
+              </p>
+
+            </article>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Impressum -->
+      <section class="section legal" id="impressum">
+
+        <div class="content">
+
+          <div class="legal-grid">
+
+            <div class="legal-copy">
+
+              <p class="meta">
+                Impressum / 11
+              </p>
+
+              <h2>
+                Impressum
+              </h2>
+
+              <p>
+                GMT Gaia Matrix Technologies AG<br>
+                Max-Högger-Strasse 6<br>
+                8048 Zürich<br>
+                Schweiz
+              </p>
+
+              <p>
+                Weitere Angaben zum Unternehmen, zur verantwortlichen Stelle
+                und zu rechtlichen Informationen werden hier ergänzt.
+              </p>
+
+              <p class="text-mono-small">
+                Impressum / Rechtliche Angaben folgen.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+
+      <div class="content">
+
+        <div class="footer-inner">
+
+          <span>
+            Gaia Matrix Technologies AG / Zürich
+          </span>
+
+          <span>
+            Energieunabhängigkeit / Nachhaltigkeit / Zukunft
+          </span>
+
+        </div>
+
+      </div>
+
+    </footer>
+
+  </div>
+
+
+  <div class="toast" id="toast" role="status">
+    Anfrage wurde vorgemerkt.
+  </div>
+
+
+  <script>
+    const toast = document.getElementById("toast");
+    const investorForm = document.getElementById("investor-form");
+    const links = document.querySelectorAll('a[href^="#"]');
+    let toastTimeout;
+
+    function showToast(message, duration = 3000) {
+      window.clearTimeout(toastTimeout);
+
+      toast.textContent = message;
+      toast.classList.add("visible");
+
+      toastTimeout = window.setTimeout(() => {
+        toast.classList.remove("visible");
+      }, duration);
+    }
+
+    links.forEach((link) => {
+      link.addEventListener("click", () => {
+        const target = link.getAttribute("href");
+
+        if (target === "#nda" || target === "#contact") {
+          showToast("Bereich geöffnet.");
+        }
+      });
+    });
+
+    investorForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      showToast(
+        "Vielen Dank. Ihre Anfrage wurde vorgemerkt.",
+        3500
+      );
+    });
+  </script>
+
+</body>
+</html>
