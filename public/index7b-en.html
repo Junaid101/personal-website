@@ -1213,8 +1213,7 @@
     --------------------------------------- */
 
     @media (max-width: 900px) {
-      .nav-links,
-      .language-switcher {
+      .nav-links {
         display: none;
       }
 
@@ -1334,6 +1333,13 @@
 
       .brand {
         font-size: 12px;
+        gap: 9px;
+      }
+
+      .language-switcher {
+        flex: 0 0 auto;
+        font-size: .68rem;
+        gap: 6px;
       }
 
       .section {
@@ -1372,6 +1378,7 @@
       .stats {
         display: grid;
         gap: 0 16px;
+        grid-column: 1;
         grid-template-columns: repeat(2, 1fr);
       }
 
@@ -1404,6 +1411,7 @@
       }
 
       .section-head,
+      .hero-layout,
       .platform,
       .comparison,
       .opportunity-layout,
@@ -1585,6 +1593,12 @@
 
       .brand {
         font-size: 11px;
+        gap: 8px;
+      }
+
+      .brand-mark {
+        height: 15px;
+        width: 15px;
       }
 
       h1 {
@@ -2789,26 +2803,6 @@
               <span class="contact-role">
                 CEO and Co-Founder
               </span>
-
-              <h3>
-                Gerlinde Jacobs
-              </h3>
-
-              <p class="address">
-                GMT Gaia Matrix Technologies AG<br>
-                Max-Högger-Strasse 6<br>
-                8048 Zürich<br>
-                Switzerland
-              </p>
-
-            </article>
-
-
-
-          </div>
-
-        </div>
-
       </section>
 
 
