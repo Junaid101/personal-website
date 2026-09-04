@@ -1,0 +1,2340 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Gaia Matrix Technologies AG entwickelt nanotechnologische Energiesysteme für Photovoltaik, Leuchttechnologie, Heizung und Energiespeicherung.">
+  <title>Gaia Matrix Technologies AG | Energie neu gedacht</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink:#0a0a0a;
+      --surface:#ffffff;
+      --muted:#737373;
+      --hairline:#e5e5e5;
+      --grid:rgba(15,15,15,.06);
+      --divider:rgba(15,15,15,.08);
+      --mono:"Geist Mono",monospace;
+      --geist:Geist,Arial,sans-serif;
+    }
+
+    * {
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    html {
+      scroll-behavior:smooth;
+    }
+
+    body {
+      background:var(--surface);
+      color:var(--ink);
+      font-family:var(--geist);
+      line-height:1.55;
+      overflow-x:hidden;
+    }
+
+    body::before {
+      background:
+        repeating-linear-gradient(
+          90deg,
+          transparent 0 calc((100vw - min(1200px, 100vw)) / 2),
+          var(--grid) calc((100vw - min(1200px, 100vw)) / 2)
+            calc((100vw - min(1200px, 100vw)) / 2 + 1px),
+          transparent calc((100vw - min(1200px, 100vw)) / 2 + 1px)
+            calc((100vw - min(1200px, 100vw)) / 2 + 20vw)
+        );
+      content:"";
+      inset:0;
+      pointer-events:none;
+      position:fixed;
+      z-index:0;
+    }
+
+    .grid-overlay {
+      display:grid;
+      grid-template-columns:repeat(6,1fr);
+      inset:0;
+      margin:auto;
+      max-width:1200px;
+      pointer-events:none;
+      position:fixed;
+      z-index:0;
+    }
+
+    .grid-overlay span {
+      border-left:1px solid var(--grid);
+      height:100%;
+    }
+
+    .grid-overlay span:last-child {
+      border-right:1px solid var(--grid);
+    }
+
+    .page {
+      position:relative;
+      z-index:1;
+    }
+
+    .content {
+      margin:0 auto;
+      max-width:1200px;
+      padding:0 28px;
+      width:100%;
+    }
+
+    .mono {
+      font-family:var(--mono);
+    }
+
+    .meta {
+      color:var(--ink);
+      font:500 .6875rem/1 var(--mono);
+      letter-spacing:.16em;
+      text-transform:uppercase;
+    }
+
+    a {
+      color:inherit;
+    }
+
+    .nav {
+      border-bottom:1px solid var(--divider);
+    }
+
+    .nav-inner {
+      align-items:center;
+      display:flex;
+      height:72px;
+      justify-content:space-between;
+    }
+
+    .brand {
+      align-items:center;
+      display:inline-flex;
+      font-size:14px;
+      font-weight:600;
+      gap:10px;
+      text-decoration:none;
+    }
+
+    .brand-mark {
+      border:1px solid var(--ink);
+      height:16px;
+      transform:rotate(45deg);
+      width:16px;
+    }
+
+    .nav-links {
+      display:flex;
+      gap:27px;
+      list-style:none;
+    }
+
+    .nav-links a {
+      color:var(--muted);
+      font-size:13px;
+      text-decoration:none;
+      transition:color 180ms ease;
+    }
+
+    .nav-links a:hover {
+      color:var(--ink);
+    }
+
+    .nav-note {
+      color:var(--muted);
+      font:400 .6875rem/1 var(--mono);
+      text-transform:uppercase;
+    }
+
+    .section {
+      border-bottom:1px solid var(--divider);
+      padding:96px 0;
+    }
+
+    .hero {
+      min-height:calc(100vh - 72px);
+      padding-bottom:96px;
+      padding-top:96px;
+    }
+
+    .hero-grid {
+      display:grid;
+      gap:48px;
+      grid-template-columns:repeat(6,1fr);
+    }
+
+    .hero-copy {
+      grid-column:1 / span 4;
+    }
+
+    h1,
+    h2,
+    h3 {
+      letter-spacing:-.04em;
+    }
+
+    h1 {
+      font-size:clamp(2.25rem,4vw,3.25rem);
+      font-weight:600;
+      line-height:1;
+      max-width:700px;
+    }
+
+    h2 {
+      font-size:clamp(2rem,3.6vw,3rem);
+      font-weight:600;
+      line-height:1;
+      max-width:600px;
+    }
+
+    h3 {
+      font-size:1.25rem;
+      font-weight:600;
+      line-height:1.1;
+    }
+
+    .hero .meta {
+      margin-bottom:24px;
+    }
+
+    .hero-lede {
+      color:var(--muted);
+      font-size:.9375rem;
+      line-height:1.65;
+      margin-top:27px;
+      max-width:560px;
+    }
+
+    .hero-actions {
+      align-items:center;
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:32px;
+    }
+
+    .primary {
+      background:var(--ink);
+      border:1px solid var(--ink);
+      color:var(--surface);
+      font-size:.9375rem;
+      font-weight:500;
+      padding:11px 22px;
+      text-decoration:none;
+      transition:background 180ms ease,color 180ms ease;
+    }
+
+    .primary:hover {
+      background:var(--surface);
+      color:var(--ink);
+    }
+
+    .text-link {
+      border-bottom:1px solid var(--ink);
+      font-size:.9375rem;
+      padding-bottom:2px;
+      text-decoration:none;
+    }
+
+    .hero-stats {
+      border-left:1px solid var(--divider);
+      display:flex;
+      flex-direction:column;
+      grid-column:5 / span 2;
+      justify-content:flex-end;
+      padding-left:28px;
+    }
+
+    .hero-stat {
+      border-top:1px solid var(--divider);
+      padding:18px 0;
+    }
+
+    .hero-stat strong {
+      display:block;
+      font:500 1.4rem/1 var(--mono);
+    }
+
+    .hero-stat span {
+      color:var(--muted);
+      display:block;
+      font-size:.8125rem;
+      margin-top:7px;
+    }
+
+    .instrument {
+      border-bottom:1px solid var(--divider);
+      border-top:1px solid var(--divider);
+      margin-top:76px;
+      padding:28px 0;
+    }
+
+    .instrument-grid {
+      align-items:center;
+      display:grid;
+      gap:18px;
+      grid-template-columns:1fr 2fr 1fr;
+    }
+
+    .instrument-label {
+      color:var(--muted);
+      font:400 .6875rem/1.5 var(--mono);
+      text-transform:uppercase;
+    }
+
+    .panel-graphic {
+      aspect-ratio:2.2/1;
+      background:
+        repeating-linear-gradient(
+          90deg,
+          transparent 0 13%,
+          var(--ink) 13% 13.4%
+        ),
+        repeating-linear-gradient(
+          0deg,
+          transparent 0 23%,
+          var(--ink) 23% 23.5%
+        );
+      border:1px solid var(--ink);
+      position:relative;
+    }
+
+    .panel-graphic::after {
+      background:
+        linear-gradient(
+          120deg,
+          transparent 30%,
+          rgba(255,255,255,.9),
+          transparent 62%
+        );
+      content:"";
+      inset:0;
+      position:absolute;
+    }
+
+    .instrument-value {
+      font:500 .6875rem/1.5 var(--mono);
+      text-align:right;
+      text-transform:uppercase;
+    }
+
+    .section-head {
+      align-items:end;
+      display:grid;
+      gap:32px;
+      grid-template-columns:1fr 1fr;
+      margin-bottom:56px;
+    }
+
+    .section-head .meta {
+      margin-bottom:17px;
+    }
+
+    .section-head p {
+      color:var(--muted);
+      font-size:.9375rem;
+      max-width:420px;
+    }
+
+    .diagonal-band {
+      background:
+        repeating-linear-gradient(
+          135deg,
+          rgba(15,15,15,.04) 0 1px,
+          transparent 1px 8px
+        );
+    }
+
+    .story-grid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+    }
+
+    .story {
+      border-left:1px solid var(--divider);
+      min-height:250px;
+      padding:0 24px;
+    }
+
+    .story:last-child {
+      border-right:1px solid var(--divider);
+    }
+
+    .story .meta {
+      color:var(--muted);
+    }
+
+    .story h3 {
+      margin-top:64px;
+    }
+
+    .story p {
+      color:var(--muted);
+      font-size:.9375rem;
+      margin-top:12px;
+      max-width:290px;
+    }
+
+    .platform-grid {
+      display:grid;
+      gap:0;
+      grid-template-columns:repeat(6,1fr);
+    }
+
+    .platform-intro {
+      grid-column:1 / span 2;
+      padding-right:30px;
+    }
+
+    .platform-intro p {
+      color:var(--muted);
+      font-size:.9375rem;
+      margin-top:20px;
+      max-width:330px;
+    }
+
+    .platform-list {
+      border-top:1px solid var(--divider);
+      grid-column:3 / span 4;
+    }
+
+    .platform-row {
+      align-items:center;
+      border-bottom:1px solid var(--divider);
+      display:grid;
+      gap:20px;
+      grid-template-columns:1fr 1.4fr;
+      min-height:76px;
+    }
+
+    .platform-row span {
+      color:var(--muted);
+      font:500 .6875rem/1.4 var(--mono);
+      text-transform:uppercase;
+    }
+
+    .platform-row strong {
+      font-size:1rem;
+      font-weight:500;
+    }
+
+    .application-grid {
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+    }
+
+    .application {
+      border-left:1px solid var(--divider);
+      min-height:220px;
+      padding:0 20px;
+    }
+
+    .application:last-child {
+      border-right:1px solid var(--divider);
+    }
+
+    .application h3 {
+      margin-top:57px;
+    }
+
+    .application p {
+      color:var(--muted);
+      font-size:.875rem;
+      margin-top:12px;
+    }
+
+    .defense-grid {
+      display:grid;
+      grid-template-columns:repeat(6,1fr);
+    }
+
+    .defense-copy {
+      grid-column:1 / span 2;
+      padding-right:28px;
+    }
+
+    .defense-copy p {
+      color:var(--muted);
+      font-size:.9375rem;
+      margin-top:20px;
+    }
+
+    .table-wrap {
+      grid-column:3 / span 4;
+      overflow-x:auto;
+    }
+
+    table {
+      border-collapse:collapse;
+      min-width:560px;
+      width:100%;
+    }
+
+    th,
+    td {
+      border-bottom:1px solid var(--divider);
+      font-size:.875rem;
+      padding:17px 14px;
+      text-align:left;
+    }
+
+    th {
+      color:var(--muted);
+      font:500 .6875rem/1.4 var(--mono);
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    td {
+      color:var(--muted);
+    }
+
+    td:first-child {
+      color:var(--ink);
+      font-weight:500;
+    }
+
+    .check {
+      color:var(--ink);
+    }
+
+    .quote {
+      border-left:4px solid var(--ink);
+      margin:0 auto;
+      max-width:820px;
+      padding-left:26px;
+    }
+
+    blockquote {
+      font-size:clamp(1.5rem,3vw,2.25rem);
+      letter-spacing:-.03em;
+      line-height:1.15;
+    }
+
+    .quote cite {
+      color:var(--muted);
+      display:block;
+      font-size:.8125rem;
+      font-style:normal;
+      margin-top:20px;
+    }
+
+    .opportunity {
+      background:var(--surface);
+    }
+
+    .opportunity-grid {
+      align-items:end;
+      display:grid;
+      gap:32px;
+      grid-template-columns:repeat(6,1fr);
+    }
+
+    .opportunity-copy {
+      grid-column:1 / span 4;
+    }
+
+    .opportunity-copy p {
+      color:var(--muted);
+      font-size:.9375rem;
+      margin-top:20px;
+      max-width:600px;
+    }
+
+    .opportunity-action {
+      grid-column:5 / span 2;
+      justify-self:end;
+    }
+
+    /* NDA / investor access */
+    .nda-grid {
+      display:grid;
+      gap:48px;
+      grid-template-columns:2fr 4fr;
+    }
+
+    .nda-intro {
+      padding-right:20px;
+    }
+
+    .nda-intro p {
+      color:var(--muted);
+      font-size:.9375rem;
+      margin-top:20px;
+      max-width:360px;
+    }
+
+    .nda-points {
+      border-top:1px solid var(--divider);
+    }
+
+    .nda-point {
+      border-bottom:1px solid var(--divider);
+      display:grid;
+      gap:20px;
+      grid-template-columns:1fr 2fr;
+      padding:18px 0;
+    }
+
+    .nda-point span {
+      color:var(--muted);
+      font:500 .6875rem/1.4 var(--mono);
+      text-transform:uppercase;
+    }
+
+    .nda-point strong {
+      font-size:.9375rem;
+      font-weight:500;
+    }
+
+    .investor-form-wrap {
+      margin-top:64px;
+      border-top:1px solid var(--divider);
+      padding-top:42px;
+    }
+
+    .investor-form-head {
+      display:grid;
+      gap:32px;
+      grid-template-columns:1fr 1fr;
+      margin-bottom:34px;
+    }
+
+    .investor-form-head p {
+      color:var(--muted);
+      font-size:.9375rem;
+      max-width:420px;
+    }
+
+    .investor-form {
+      display:grid;
+      gap:20px;
+      grid-template-columns:1fr 1fr;
+    }
+
+    .form-field {
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .form-field.full {
+      grid-column:1 / -1;
+    }
+
+    .form-field label {
+      color:var(--muted);
+      font:500 .6875rem/1.4 var(--mono);
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      appearance:none;
+      background:var(--surface);
+      border:1px solid var(--divider);
+      border-radius:0;
+      color:var(--ink);
+      font:400 .9375rem/1.5 var(--geist);
+      outline:none;
+      padding:12px 14px;
+      transition:border-color 180ms ease;
+      width:100%;
+    }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      border-color:var(--ink);
+    }
+
+    .form-field textarea {
+      min-height:130px;
+      resize:vertical;
+    }
+
+    .form-check {
+      align-items:flex-start;
+      display:flex;
+      gap:10px;
+      grid-column:1 / -1;
+      margin-top:4px;
+    }
+
+    .form-check input {
+      accent-color:var(--ink);
+      margin-top:4px;
+    }
+
+    .form-check label {
+      color:var(--muted);
+      font-size:.8125rem;
+      line-height:1.5;
+    }
+
+    .form-submit {
+      grid-column:1 / -1;
+      margin-top:4px;
+    }
+
+    .form-note {
+      color:var(--muted);
+      font:400 .6875rem/1.5 var(--mono);
+      margin-top:14px;
+    }
+
+    .contact-grid {
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:0;
+    }
+
+    .contact-card {
+      border-left:1px solid var(--divider);
+      padding:0 28px;
+      min-height:230px;
+    }
+
+    .contact-card:last-child {
+      border-right:1px solid var(--divider);
+    }
+
+    .contact-card h3 {
+      margin-top:50px;
+    }
+
+    .contact-card p {
+      color:var(--muted);
+      font-size:.875rem;
+      margin-top:14px;
+    }
+
+    .contact-role {
+      color:var(--muted);
+      font:500 .6875rem/1.4 var(--mono);
+      text-transform:uppercase;
+    }
+
+    .address {
+      color:var(--ink) !important;
+      line-height:1.7;
+    }
+
+    .legal {
+      background:var(--surface);
+    }
+
+    .legal-grid {
+      display:grid;
+      grid-template-columns:repeat(6,1fr);
+    }
+
+    .legal-copy {
+      grid-column:1 / span 4;
+    }
+
+    .legal-copy p {
+      color:var(--muted);
+      font-size:.875rem;
+      margin-top:18px;
+      max-width:680px;
+    }
+
+    .foot {
+      padding:34px 0 48px;
+    }
+
+    .foot-inner {
+      color:var(--muted);
+      display:flex;
+      font:400 .6875rem/1.5 var(--mono);
+      justify-content:space-between;
+      text-transform:uppercase;
+    }
+
+    .toast {
+      background:var(--ink);
+      color:var(--surface);
+      display:none;
+      font:500 .6875rem/1.4 var(--mono);
+      padding:12px 16px;
+      position:fixed;
+      right:20px;
+      top:88px;
+      z-index:20;
+    }
+
+    .toast.visible {
+      display:block;
+    }
+
+    @media (max-width:800px) {
+      .nav-links {
+        display:none;
+      }
+
+      .nav-note {
+        display:none;
+      }
+
+      .hero-grid,
+      .section-head,
+      .platform-grid,
+      .defense-grid,
+      .opportunity-grid,
+      .legal-grid,
+      .nda-grid,
+      .investor-form-head {
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .hero-copy,
+      .platform-intro,
+      .defense-copy,
+      .opportunity-copy,
+      .legal-copy,
+      .nda-intro {
+        grid-column:1 / -1;
+      }
+
+      .hero-stats {
+        border-left:0;
+        border-top:1px solid var(--divider);
+        grid-column:1 / -1;
+        padding-left:0;
+        padding-top:18px;
+      }
+
+      .instrument-grid {
+        grid-template-columns:1fr 2fr;
+      }
+
+      .instrument-value {
+        grid-column:2;
+        text-align:left;
+      }
+
+      .platform-list,
+      .table-wrap {
+        grid-column:1 / -1;
+        margin-top:42px;
+      }
+
+      .application-grid {
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .application {
+        border-bottom:1px solid var(--divider);
+        padding-bottom:24px;
+        padding-top:24px;
+      }
+
+      .application h3 {
+        margin-top:20px;
+      }
+
+      .application:nth-child(2) {
+        border-right:1px solid var(--divider);
+      }
+
+      .application:nth-child(3) {
+        border-bottom:0;
+      }
+
+      .application:nth-child(4) {
+        border-bottom:0;
+        border-right:1px solid var(--divider);
+      }
+
+      .opportunity-action {
+        grid-column:1 / -1;
+        justify-self:start;
+        margin-top:16px;
+      }
+
+      .nda-intro {
+        padding-right:0;
+      }
+
+      .investor-form-wrap {
+        margin-top:48px;
+      }
+
+      .contact-grid {
+        grid-template-columns:1fr;
+      }
+
+      .contact-card {
+        border-bottom:1px solid var(--divider);
+        border-left:0;
+        padding:24px 0;
+      }
+
+      .contact-card:last-child {
+        border-bottom:0;
+        border-right:0;
+      }
+
+      .contact-card h3 {
+        margin-top:20px;
+      }
+
+      .legal-copy {
+        grid-column:1 / -1;
+      }
+    }
+
+    @media (max-width:560px) {
+      .content {
+        padding:0 18px;
+      }
+
+      .nav-inner {
+        height:62px;
+      }
+
+      .section,
+      .hero {
+        padding:72px 0;
+      }
+
+      .hero {
+        min-height:auto;
+      }
+
+      .hero-stats {
+        display:grid;
+        gap:0 16px;
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .hero-stat:nth-child(2) {
+        border-top:1px solid var(--divider);
+      }
+
+      .hero-stat:last-child {
+        grid-column:1 / -1;
+      }
+
+      .instrument-grid {
+        grid-template-columns:1fr;
+      }
+
+      .instrument-value {
+        grid-column:auto;
+        text-align:left;
+      }
+
+      .story-grid,
+      .application-grid {
+        grid-template-columns:1fr;
+      }
+
+      .story,
+      .story:last-child {
+        border-bottom:1px solid var(--divider);
+        border-left:0;
+        border-right:0;
+        min-height:170px;
+        padding:22px 0;
+      }
+
+      .story h3 {
+        margin-top:30px;
+      }
+
+      .story:last-child {
+        border-bottom:0;
+      }
+
+      .application,
+      .application:nth-child(2),
+      .application:nth-child(4) {
+        border-left:0;
+        border-right:0;
+        min-height:150px;
+        padding:22px 0;
+      }
+
+      .application:nth-child(3) {
+        border-bottom:1px solid var(--divider);
+      }
+
+      .application:last-child {
+        border-bottom:0;
+      }
+
+      .platform-row {
+        grid-template-columns:1fr 1.25fr;
+        gap:14px;
+        min-height:82px;
+      }
+
+      .nda-point {
+        grid-template-columns:1fr;
+        gap:7px;
+      }
+
+      .investor-form {
+        grid-template-columns:1fr;
+      }
+
+      .form-field.full,
+      .form-check,
+      .form-submit {
+        grid-column:1;
+      }
+
+      .investor-form-head {
+        grid-template-columns:1fr;
+      }
+
+      .foot-inner {
+        flex-direction:column;
+        gap:8px;
+      }
+
+      .quote {
+        padding-left:18px;
+      }
+
+      blockquote {
+        font-size:1.55rem;
+      }
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      *,
+      html {
+        scroll-behavior:auto!important;
+        transition-duration:.01ms!important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="grid-overlay" aria-hidden="true">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <div class="page" id="top">
+
+    <!-- Navigation -->
+    <header class="nav">
+      <div class="content nav-inner">
+
+        <a class="brand" href="#top">
+          <span class="brand-mark"></span>
+          Gaia Matrix Technologies
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#vision">Vision</a></li>
+          <li><a href="#technologies">Technologien</a></li>
+          <li><a href="#independence">Energieunabhängigkeit</a></li>
+          <li><a href="#nda">Technische Evidenz</a></li>
+          <li><a href="#contact">Kontakt</a></li>
+        </ul>
+
+        <span class="nav-note">
+          Zukunft der Energie
+        </span>
+
+      </div>
+    </header>
+
+
+    <main>
+
+      <!-- Hero -->
+      <section class="section hero" id="vision">
+        <div class="content">
+
+          <div class="hero-grid">
+
+            <div class="hero-copy">
+
+              <p class="meta">
+                Gaia Matrix Technologies / 01
+              </p>
+
+              <h1>
+                Um Zukunft zu gestalten, muss man eine klare Vorstellung davon haben.
+                Diese haben wir.
+              </h1>
+
+              <p class="hero-lede">
+                Vor dem Hintergrund geopolitischer Entwicklungen und wachsender
+                Umweltprobleme brauchen wir mehr denn je eine umweltfreundliche,
+                nachhaltige, resiliente und CO₂-arme Energieversorgung auf Basis
+                erneuerbarer Energien.
+              </p>
+
+              <div class="hero-actions">
+
+                <a class="primary" href="#technologies">
+                  Unsere Technologien
+                </a>
+
+                <a class="text-link" href="#nda">
+                  Technische Evidenz
+                </a>
+
+              </div>
+
+            </div>
+
+
+            <div class="hero-stats">
+
+              <div class="hero-stat">
+                <strong>2050</strong>
+                <span>
+                  Europa strebt Klimaneutralität an
+                </span>
+              </div>
+
+              <div class="hero-stat">
+                <strong>04</strong>
+                <span>
+                  Technologiebereiche: Photovoltaik, Licht, Heizung und Speicherung
+                </span>
+              </div>
+
+              <div class="hero-stat">
+                <strong>100%</strong>
+                <span>
+                  recycelbare Ausrichtung unserer Produkte
+                </span>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="instrument">
+
+            <div class="instrument-grid">
+
+              <span class="instrument-label">
+                Gaia Matrix Technologies<br>
+                Nanotechnologie / Energie / Zukunft
+              </span>
+
+              <div
+                class="panel-graphic"
+                aria-label="Abstrakte Darstellung eines nanotechnologischen Energiesystems"
+                role="img">
+              </div>
+
+              <span class="instrument-value">
+                Nachhaltig<br>
+                dezentral<br>
+                autark
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- Vision -->
+      <section class="section diagonal-band">
+
+        <div class="content">
+
+          <div class="section-head">
+
+            <div>
+
+              <p class="meta">
+                Unsere Vision / 02
+              </p>
+
+              <h2>
+                Die Ära einer neuen grünen Form der Energiegewinnung.
+              </h2>
+
+            </div>
+
+            <p>
+              Basierend auf neuesten nanotechnologischen Erkenntnissen und
+              Verfahren entwickelt Gaia Matrix Technologies Systeme, die
+              Energiegewinnung und Energieversorgung neu denken.
+              Weiterführende technische Unterlagen und Nachweise können
+              interessierten Parteien im Rahmen eines NDA zur Verfügung
+              gestellt werden.
+            </p>
+
+          </div>
+
+
+          <div class="story-grid">
+
+            <article class="story">
+
+              <span class="meta">
+                01 / Nachhaltigkeit
+              </span>
+
+              <h3>
+                Energie mit Verantwortung.
+              </h3>
+
+              <p>
+                Unsere Systeme sind auf Nachhaltigkeit, Umweltfreundlichkeit,
+                Langlebigkeit, Effizienz und einen geringen CO₂-Ausstoß ausgerichtet.
+              </p>
+
+            </article>
+
+
+            <article class="story">
+
+              <span class="meta">
+                02 / Technologie
+              </span>
+
+              <h3>
+                Gedruckte Nanotechnologie.
+              </h3>
+
+              <p>
+                Patentierte und zertifizierte Systeme verbinden moderne
+                Nanotechnologie mit einem klaren und skalierbaren Ansatz für
+                die Energiegewinnung. Technische Details werden auf Anfrage
+                im geschützten Rahmen vertieft.
+              </p>
+
+            </article>
+
+
+            <article class="story">
+
+              <span class="meta">
+                03 / Unabhängigkeit
+              </span>
+
+              <h3>
+                Energie dort, wo sie gebraucht wird.
+              </h3>
+
+              <p>
+                Dezentrale und autarke Energiesysteme schaffen neue Möglichkeiten
+                für Gebäude, Infrastruktur und unseren Alltag.
+              </p>
+
+            </article>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Technologies -->
+      <section class="section" id="technologies">
+
+        <div class="content">
+
+          <div class="platform-grid">
+
+            <div class="platform-intro">
+
+              <p class="meta">
+                Technologien / 03
+              </p>
+
+              <h2>
+                Vier Bereiche. Eine gemeinsame Vision.
+              </h2>
+
+              <p>
+                Die von Gaia Matrix Technologies verwendete Nanotechnologie
+                eröffnet neue Möglichkeiten in unterschiedlichen Bereichen
+                der Energiegewinnung und Energieversorgung.
+              </p>
+
+              <p>
+                Detaillierte technische Spezifikationen, Prüfunterlagen und
+                weitere Evidenz werden qualifizierten Interessenten im Rahmen
+                eines NDA zugänglich gemacht.
+              </p>
+
+            </div>
+
+
+            <div class="platform-list">
+
+              <div class="platform-row">
+                <span>01 / Photovoltaik</span>
+                <strong>
+                  Gedruckte Systeme zur Erzeugung elektrischer Energie
+                </strong>
+              </div>
+
+              <div class="platform-row">
+                <span>02 / Leuchttechnologie</span>
+                <strong>
+                  Nanotechnologische Lösungen für eine neue Form der Beleuchtung
+                </strong>
+              </div>
+
+              <div class="platform-row">
+                <span>03 / Heizung</span>
+                <strong>
+                  Effiziente Systeme für eine nachhaltige Wärmeversorgung
+                </strong>
+              </div>
+
+              <div class="platform-row">
+                <span>04 / Energiespeicherung</span>
+                <strong>
+                  Technologien für Speicherung und Nutzung selbst erzeugter Energie
+                </strong>
+              </div>
+
+              <div class="platform-row">
+                <span>Materialien</span>
+                <strong>
+                  Ohne kritische oder seltene Erden
+                </strong>
+              </div>
+
+              <div class="platform-row">
+                <span>Produktansatz</span>
+                <strong>
+                  Langlebig, schadstofffrei und vollständig recycelbar
+                </strong>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Applications -->
+      <section class="section" id="applications">
+
+        <div class="content">
+
+          <div class="section-head">
+
+            <div>
+
+              <p class="meta">
+                Anwendungen / 04
+              </p>
+
+              <h2>
+                Energie wird Teil unserer Umgebung.
+              </h2>
+
+            </div>
+
+            <p>
+              Unsere Energiesysteme können dazu beitragen, Gebäude,
+              Infrastruktur und die Art, wie wir wohnen und arbeiten,
+              nachhaltig zu verändern.
+            </p>
+
+          </div>
+
+
+          <div class="application-grid">
+
+            <article class="application">
+
+              <span class="meta">
+                A / Gebäude
+              </span>
+
+              <h3>
+                Autarke Häuser
+              </h3>
+
+              <p>
+                Photovoltaik und Energiespeicherung ermöglichen Gebäude,
+                die ihren Energiebedarf weitgehend eigenständig decken können.
+              </p>
+
+            </article>
+
+
+            <article class="application">
+
+              <span class="meta">
+                B / Gewerbe
+              </span>
+
+              <h3>
+                Gewerbliche Systeme
+              </h3>
+
+              <p>
+                Dezentrale Energieversorgung für Unternehmen und gewerbliche
+                Gebäude mit Fokus auf Effizienz und langfristige Kostenreduktion.
+              </p>
+
+            </article>
+
+
+            <article class="application">
+
+              <span class="meta">
+                C / Infrastruktur
+              </span>
+
+              <h3>
+                Dezentrale Energie
+              </h3>
+
+              <p>
+                Energieversorgung wird unabhängiger von zentralen Strukturen
+                und damit resilienter gegenüber Krisen und Engpässen.
+              </p>
+
+            </article>
+
+
+            <article class="application">
+
+              <span class="meta">
+                D / Alltag
+              </span>
+
+              <h3>
+                Neue Lebensräume
+              </h3>
+
+              <p>
+                Unsere Produkte sollen ihren Einsatz dort finden, wo wir
+                leben, arbeiten und Energie täglich benötigen.
+              </p>
+
+            </article>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Independence -->
+      <section class="section" id="independence">
+
+        <div class="content">
+
+          <div class="defense-grid">
+
+            <div class="defense-copy">
+
+              <p class="meta">
+                Energieunabhängigkeit / 05
+              </p>
+
+              <h2>
+                Strategische Souveränität beginnt bei der Energie.
+              </h2>
+
+              <p>
+                Die dezentralisierte, autarke Energieversorgung steht in
+                unserem Fokus. Sie bedeutet strategische Souveränität und
+                zugleich Unabhängigkeit von herkömmlicher Energieversorgung
+                durch Gas, Öl oder Kohle.
+              </p>
+
+              <p>
+                Eine resiliente Energieinfrastruktur kann dazu beitragen,
+                dass Energie in Krisensituationen nicht länger als strategisches
+                Druckmittel eingesetzt werden kann.
+              </p>
+
+              <p>
+                Technische Nachweise und weiterführende Unterlagen zur
+                Leistungsfähigkeit der Systeme können nach entsprechender
+                Qualifizierung und unter NDA eingesehen werden.
+              </p>
+
+            </div>
+
+
+            <div class="table-wrap">
+
+              <table>
+
+                <thead>
+                  <tr>
+                    <th>Dimension</th>
+                    <th>Unser Ansatz</th>
+                    <th>Ziel</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+
+                  <tr>
+                    <td>Versorgung</td>
+                    <td class="check">
+                      Dezentral und autark
+                    </td>
+                    <td>
+                      Höhere Resilienz
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Energiequellen</td>
+                    <td class="check">
+                      Erneuerbare Energien
+                    </td>
+                    <td>
+                      Weniger fossile Abhängigkeit
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Materialien</td>
+                    <td class="check">
+                      Ohne kritische oder seltene Erden
+                    </td>
+                    <td>
+                      Nachhaltigere Produktion
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Lebensdauer</td>
+                    <td class="check">
+                      Langlebige Systeme
+                    </td>
+                    <td>
+                      Nachhaltige Nutzung
+                    </td>
+                  </tr>
+
+                </tbody>
+
+              </table>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Quote -->
+      <section class="section">
+
+        <div class="content">
+
+          <div class="quote">
+
+            <blockquote>
+              „Unsere Umwelt, unsere Infrastruktur, unsere Häuser sowie unsere
+              Form des Wohnens werden sich durch diese Energiesysteme positiv verändern.“
+            </blockquote>
+
+            <cite>
+              Gaia Matrix Technologies AG / Zukunftsvision
+            </cite>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Sustainability -->
+      <section class="section diagonal-band">
+
+        <div class="content">
+
+          <div class="section-head">
+
+            <div>
+
+              <p class="meta">
+                Material &amp; Effizienz / 06
+              </p>
+
+              <h2>
+                Nachhaltigkeit beginnt bei den Materialien.
+              </h2>
+
+            </div>
+
+            <p>
+              Unsere Produkte kommen ohne kritische oder seltene Erden aus.
+              Sie sind frei von Giftstoffen, langlebig, preiswert und auf
+              einen geringen CO₂-Ausstoß sowie vollständige Recyclingfähigkeit
+              ausgerichtet.
+            </p>
+
+          </div>
+
+
+          <div class="story-grid">
+
+            <article class="story">
+
+              <span class="meta">
+                01 / Ressourcen
+              </span>
+
+              <h3>
+                Keine kritischen Erden.
+              </h3>
+
+              <p>
+                Für die Herstellung unserer Produkte werden weder kritische
+                noch seltene Erden eingesetzt.
+              </p>
+
+            </article>
+
+
+            <article class="story">
+
+              <span class="meta">
+                02 / Kreislauf
+              </span>
+
+              <h3>
+                Recycelbar.
+              </h3>
+
+              <p>
+                Unsere Systeme sind vollständig recycelbar und damit auf
+                einen nachhaltigeren Produktlebenszyklus ausgerichtet.
+              </p>
+
+            </article>
+
+
+            <article class="story">
+
+              <span class="meta">
+                03 / Wirtschaftlichkeit
+              </span>
+
+              <h3>
+                Nachhaltig und wirtschaftlich.
+              </h3>
+
+              <p>
+                Die Produkte sind preiswert und auf eine Amortisation des
+                investierten Betrags innerhalb weniger Jahre ausgelegt.
+              </p>
+
+            </article>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Partners -->
+      <section class="section">
+
+        <div class="content">
+
+          <div class="opportunity-grid">
+
+            <div class="opportunity-copy">
+
+              <p class="meta">
+                Netzwerk / 07
+              </p>
+
+              <h2>
+                Gemeinsam die Energiezukunft gestalten.
+              </h2>
+
+              <p>
+                Mit unseren renommierten Partnern aus der Industrie sind wir
+                international vernetzt. Wenn Sie integrativer Teil dieses
+                Netzwerkes werden wollen, können wir gemeinsam die Zukunft
+                unserer und nachfolgender Generationen sichern.
+              </p>
+
+            </div>
+
+            <div class="opportunity-action">
+
+              <a class="primary" href="#nda">
+                Technische Unterlagen
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Future / Investment -->
+      <section class="section opportunity">
+
+        <div class="content">
+
+          <div class="opportunity-grid">
+
+            <div class="opportunity-copy">
+
+              <p class="meta">
+                Zukunft / 08
+              </p>
+
+              <h2>
+                Ein Quantensprung.
+              </h2>
+
+              <p>
+                Unsere Nanotechnologie revolutioniert die Welt im Bereich der
+                Energiegewinnung. Der Traum der Unabhängigkeit von fossilen
+                Brennstoffen wird wahr.
+              </p>
+
+              <p>
+                Wir sehen unseren Ansatz als Beginn einer Reise, auf die wir
+                Sie als Kunden und/oder Investoren mitnehmen möchten.
+              </p>
+
+              <p>
+                Zukunftsinvestitionen in Energieunabhängigkeit, Umweltschutz
+                und Sicherheit sind auch und gerade für verantwortungsbewusste
+                Investoren ein richtiger und lukrativer Schritt.
+              </p>
+
+              <p class="mono" style="font-size:.6875rem;">
+                Weiterführende technische Dokumentation und Evidenz sind
+                für qualifizierte Interessenten nach Abschluss eines NDA verfügbar.
+              </p>
+
+            </div>
+
+
+            <div class="opportunity-action">
+
+              <a class="primary" href="#nda">
+                Zugang anfragen
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- NDA / Technical Evidence -->
+      <section class="section" id="nda">
+
+        <div class="content">
+
+          <div class="nda-grid">
+
+            <div class="nda-intro">
+
+              <p class="meta">
+                Technische Evidenz / 09
+              </p>
+
+              <h2>
+                Tiefer einsteigen. Unter NDA.
+              </h2>
+
+              <p>
+                Wir stellen interessierten Investoren, Industriepartnern
+                und qualifizierten Kooperationspartnern weiterführende
+                technische Informationen und Nachweise im geschützten Rahmen
+                zur Verfügung.
+              </p>
+
+            </div>
+
+
+            <div class="nda-points">
+
+              <div class="nda-point">
+                <span>
+                  01 / Technische Daten
+                </span>
+
+                <strong>
+                  Weiterführende technische Spezifikationen und Produktinformationen
+                  können nach Prüfung der Anfrage bereitgestellt werden.
+                </strong>
+              </div>
+
+
+              <div class="nda-point">
+                <span>
+                  02 / Nachweise
+                </span>
+
+                <strong>
+                  Verfügbare Test-, Prüf-, Zertifizierungs- und Validierungsunterlagen
+                  können im Rahmen des geschützten Informationsprozesses eingesehen werden.
+                </strong>
+              </div>
+
+
+              <div class="nda-point">
+                <span>
+                  03 / Geschäftsmodell
+                </span>
+
+                <strong>
+                  Qualifizierte Interessenten können vertiefende Informationen
+                  zu Anwendungen, Partnerschaften und kommerzieller Entwicklung erhalten.
+                </strong>
+              </div>
+
+
+              <div class="nda-point">
+                <span>
+                  04 / Vertraulichkeit
+                </span>
+
+                <strong>
+                  Der Zugang zu vertraulichen Informationen erfolgt nach
+                  entsprechender Prüfung und, soweit erforderlich, auf Basis
+                  einer Vertraulichkeitsvereinbarung (NDA).
+                </strong>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- Investor form -->
+          <div class="investor-form-wrap">
+
+            <div class="investor-form-head">
+
+              <div>
+                <p class="meta">
+                  Zugang anfragen
+                </p>
+
+                <h2>
+                  Lassen Sie uns ins Gespräch kommen.
+                </h2>
+              </div>
+
+              <p>
+                Bitte teilen Sie uns einige Informationen zu Ihrer Organisation
+                und Ihrem Interesse mit. Wir prüfen Ihre Anfrage und melden uns
+                anschließend persönlich bei Ihnen.
+              </p>
+
+            </div>
+
+
+            <!--
+              IMPORTANT:
+              This form is front-end only.
+              Connect the action attribute to your backend/form provider.
+            -->
+
+            <form
+              class="investor-form"
+              id="investor-form"
+              action="#"
+              method="POST"
+            >
+
+              <div class="form-field">
+
+                <label for="name">
+                  Name *
+                </label>
+
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  autocomplete="name"
+                  required
+                >
+
+              </div>
+
+
+              <div class="form-field">
+
+                <label for="company">
+                  Unternehmen / Organisation *
+                </label>
+
+                <input
+                  id="company"
+                  name="company"
+                  type="text"
+                  autocomplete="organization"
+                  required
+                >
+
+              </div>
+
+
+              <div class="form-field">
+
+                <label for="email">
+                  E-Mail *
+                </label>
+
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  required
+                >
+
+              </div>
+
+
+              <div class="form-field">
+
+                <label for="country">
+                  Land
+                </label>
+
+                <input
+                  id="country"
+                  name="country"
+                  type="text"
+                  autocomplete="country-name"
+                >
+
+              </div>
+
+
+              <div class="form-field">
+
+                <label for="type">
+                  Organisationstyp *
+                </label>
+
+                <select
+                  id="type"
+                  name="organisation_type"
+                  required
+                >
+                  <option value="" selected disabled>
+                    Bitte auswählen
+                  </option>
+                  <option value="private-investor">
+                    Privatinvestor
+                  </option>
+                  <option value="institutional-investor">
+                    Institutioneller Investor
+                  </option>
+                  <option value="family-office">
+                    Family Office
+                  </option>
+                  <option value="corporate">
+                    Unternehmen / Industrie
+                  </option>
+                  <option value="technology-partner">
+                    Technologiepartner
+                  </option>
+                  <option value="other">
+                    Sonstige
+                  </option>
+                </select>
+
+              </div>
+
+
+              <div class="form-field">
+
+                <label for="interest">
+                  Interessensbereich *
+                </label>
+
+                <select
+                  id="interest"
+                  name="interest"
+                  required
+                >
+                  <option value="" selected disabled>
+                    Bitte auswählen
+                  </option>
+                  <option value="investment">
+                    Investment
+                  </option>
+                  <option value="photovoltaics">
+                    Photovoltaik
+                  </option>
+                  <option value="lighting">
+                    Leuchttechnologie
+                  </option>
+                  <option value="heating">
+                    Heizung
+                  </option>
+                  <option value="energy-storage">
+                    Energiespeicherung
+                  </option>
+                  <option value="industrial-partnership">
+                    Industriepartnerschaft
+                  </option>
+                  <option value="commercialisation">
+                    Kommerzialisierung
+                  </option>
+                </select>
+
+              </div>
+
+
+              <div class="form-field">
+
+                <label for="investment">
+                  Investitions- / Kooperationsinteresse
+                </label>
+
+                <select
+                  id="investment"
+                  name="investment_interest"
+                >
+                  <option value="" selected>
+                    Bitte auswählen
+                  </option>
+                  <option value="exploring">
+                    Erste Orientierung
+                  </option>
+                  <option value="serious-interest">
+                    Konkretes Interesse
+                  </option>
+                  <option value="strategic-partnership">
+                    Strategische Partnerschaft
+                  </option>
+                  <option value="investment">
+                    Investitionsgespräch
+                  </option>
+                  <option value="commercial-partnership">
+                    Kommerzielle Zusammenarbeit
+                  </option>
+                </select>
+
+              </div>
+
+
+              <div class="form-field">
+
+                <label for="website">
+                  Website
+                </label>
+
+                <input
+                  id="website"
+                  name="website"
+                  type="url"
+                  autocomplete="url"
+                  placeholder="https://"
+                >
+
+              </div>
+
+
+              <div class="form-field full">
+
+                <label for="message">
+                  Nachricht
+                </label>
+
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="Beschreiben Sie kurz Ihr Interesse oder Ihre geplante Zusammenarbeit."
+                ></textarea>
+
+              </div>
+
+
+              <div class="form-check">
+
+                <input
+                  id="nda-consent"
+                  name="nda_interest"
+                  type="checkbox"
+                  value="yes"
+                  required
+                >
+
+                <label for="nda-consent">
+                  Ich möchte Informationen zu den verfügbaren technischen
+                  Unterlagen und Nachweisen erhalten und verstehe, dass
+                  vertrauliche Informationen gegebenenfalls erst nach
+                  Abschluss einer NDA bereitgestellt werden.
+                </label>
+
+              </div>
+
+
+              <div class="form-submit">
+
+                <button
+                  class="primary"
+                  type="submit"
+                >
+                  Anfrage senden
+                </button>
+
+                <p class="form-note">
+                  Ihre Angaben werden zur Bearbeitung Ihrer Anfrage verwendet.
+                  Bitte ergänzen Sie vor dem Livegang einen Link zu Ihrer
+                  Datenschutzerklärung und passen Sie diesen Hinweis an Ihre
+                  tatsächliche Datenverarbeitung an.
+                </p>
+
+              </div>
+
+            </form>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Contact -->
+      <section class="section" id="contact">
+
+        <div class="content">
+
+          <div class="section-head">
+
+            <div>
+
+              <p class="meta">
+                Kontakt / 10
+              </p>
+
+              <h2>
+                Die Richtung ist klar und steht fest.
+              </h2>
+
+            </div>
+
+            <p>
+              Wenn Sie Kunde, Investor oder integrativer Teil unseres
+              internationalen Netzwerks werden möchten, freuen wir uns
+              auf Ihre Kontaktaufnahme.
+            </p>
+
+          </div>
+
+
+          <div class="contact-grid">
+
+            <article class="contact-card">
+
+              <span class="contact-role">
+                CEO und Co-Gründerin
+              </span>
+
+              <h3>
+                Gerlinde Jacobs
+              </h3>
+
+              <p class="address">
+                GMT Gaia Matrix Technologies AG<br>
+                Max-Högger-Strasse 6<br>
+                8048 Zürich<br>
+                Schweiz
+              </p>
+
+            </article>
+
+
+            <article class="contact-card">
+
+              <span class="contact-role">
+                CEO und Co-Gründer
+              </span>
+
+              <h3>
+                Michael Brüssow
+              </h3>
+
+              <p class="address">
+                GMT Gaia Matrix Technologies AG<br>
+                Max-Högger-Strasse 6<br>
+                8048 Zürich<br>
+                Schweiz
+              </p>
+
+            </article>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Impressum -->
+      <section class="section legal" id="impressum">
+
+        <div class="content">
+
+          <div class="legal-grid">
+
+            <div class="legal-copy">
+
+              <p class="meta">
+                Impressum / 11
+              </p>
+
+              <h2>
+                Impressum
+              </h2>
+
+              <p>
+                GMT Gaia Matrix Technologies AG<br>
+                Max-Högger-Strasse 6<br>
+                8048 Zürich<br>
+                Schweiz
+              </p>
+
+              <p>
+                Weitere Angaben zum Unternehmen, zur verantwortlichen Stelle
+                und zu rechtlichen Informationen werden hier ergänzt.
+              </p>
+
+              <p class="mono" style="font-size:.6875rem;">
+                Impressum / Rechtliche Angaben folgen.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="foot">
+
+      <div class="content">
+
+        <div class="foot-inner">
+
+          <span>
+            Gaia Matrix Technologies AG / Zürich
+          </span>
+
+          <span>
+            Energieunabhängigkeit / Nachhaltigkeit / Zukunft
+          </span>
+
+        </div>
+
+      </div>
+
+    </footer>
+
+  </div>
+
+
+  <div class="toast" id="toast" role="status">
+    Anfrage wurde vorgemerkt.
+  </div>
+
+
+  <script>
+    const links = document.querySelectorAll('a[href^="#"]');
+
+    links.forEach((link) => {
+      link.addEventListener('click', () => {
+
+        if (
+          link.getAttribute('href') === '#nda' ||
+          link.getAttribute('href') === '#contact'
+        ) {
+          const toast = document.getElementById('toast');
+
+          toast.classList.add('visible');
+
+          window.setTimeout(() => {
+            toast.classList.remove('visible');
+          }, 2800);
+        }
+
+      });
+    });
+
+
+    /*
+      Front-end form handling only.
+      Replace this with your actual form/backend integration.
+    */
+
+    const investorForm = document.getElementById('investor-form');
+
+    investorForm.addEventListener('submit', (event) => {
+
+      event.preventDefault();
+
+      const toast = document.getElementById('toast');
+
+      toast.textContent = 'Vielen Dank. Ihre Anfrage wurde vorgemerkt.';
+      toast.classList.add('visible');
+
+      window.setTimeout(() => {
+        toast.classList.remove('visible');
+      }, 3500);
+
+    });
+  </script>
+
+</body>
+</html>
